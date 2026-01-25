@@ -42,7 +42,7 @@ const Services = () => {
     <section
       style={{
         background: '#FFFFFF',
-        padding: '100px 0',
+        padding: '80px 0',
       }}
     >
       <div className="container">
