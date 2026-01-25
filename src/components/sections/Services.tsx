@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
+import Image from 'next/image';
 
 const Services = () => {
   const t = useTranslations('services');
@@ -15,21 +16,25 @@ const Services = () => {
       id: 'web-design',
       title: t('webDesign.title'),
       description: t('webDesign.description'),
+      image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop',
     },
     {
       id: 'ecommerce',
       title: t('ecommerce.title'),
       description: t('ecommerce.description'),
+      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
     },
     {
       id: 'web-apps',
       title: t('webApps.title'),
       description: t('webApps.description'),
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
     },
     {
       id: 'hosting',
       title: t('hosting.title'),
       description: t('hosting.description'),
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop',
     },
   ];
 
@@ -41,28 +46,29 @@ const Services = () => {
       }}
     >
       <div className="container">
-        <div style={{ maxWidth: '720px', margin: '0 auto' }}>
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            style={{ marginBottom: '48px' }}
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{ marginBottom: '48px', maxWidth: '600px' }}
+        >
+          <h2
+            style={{
+              fontSize: 'clamp(32px, 5vw, 44px)',
+              fontWeight: 400,
+              color: '#0A0A0A',
+              lineHeight: 1.2,
+            }}
           >
-            <h2
-              style={{
-                fontSize: 'clamp(32px, 5vw, 44px)',
-                fontWeight: 400,
-                color: '#0A0A0A',
-                lineHeight: 1.2,
-              }}
-            >
-              {t('title')}
-            </h2>
-          </motion.div>
+            {t('title')}
+          </h2>
+        </motion.div>
 
-          {/* Accordion */}
+        {/* Two Column Layout */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Left - Accordion */}
           <div>
             {services.map((service, index) => (
               <motion.div
@@ -94,9 +100,7 @@ const Services = () => {
                   </span>
                   <span
                     style={{
-                      fontSize: '24px',
                       color: '#0A0A0A',
-                      fontWeight: 300,
                       lineHeight: 1,
                     }}
                   >
@@ -119,7 +123,6 @@ const Services = () => {
                           color: '#6B7280',
                           lineHeight: 1.7,
                           paddingBottom: '24px',
-                          maxWidth: '600px',
                         }}
                       >
                         {service.description}
@@ -129,31 +132,58 @@ const Services = () => {
                 </AnimatePresence>
               </motion.div>
             ))}
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              style={{ marginTop: '40px' }}
+            >
+              <Link
+                href="/contact"
+                style={{
+                  display: 'inline-flex',
+                  padding: '14px 28px',
+                  background: '#0A0A0A',
+                  color: '#FFFFFF',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                }}
+              >
+                Get started
+              </Link>
+            </motion.div>
           </div>
 
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            style={{ marginTop: '40px' }}
-          >
-            <Link
-              href="/contact"
-              style={{
-                display: 'inline-flex',
-                padding: '14px 28px',
-                background: '#0A0A0A',
-                color: '#FFFFFF',
-                borderRadius: '8px',
-                fontSize: '14px',
-                fontWeight: 500,
-              }}
-            >
-              Get started
-            </Link>
-          </motion.div>
+          {/* Right - Image */}
+          <div className="hidden lg:block sticky top-32">
+            <AnimatePresence mode="wait">
+              {expandedIndex >= 0 && (
+                <motion.div
+                  key={expandedIndex}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative overflow-hidden"
+                  style={{
+                    borderRadius: '16px',
+                    aspectRatio: '4/3',
+                  }}
+                >
+                  <Image
+                    src={services[expandedIndex].image}
+                    alt={services[expandedIndex].title}
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>
