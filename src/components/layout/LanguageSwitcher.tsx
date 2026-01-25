@@ -32,6 +32,7 @@ const LanguageSwitcher = () => {
           fontSize: '14px',
           color: '#525252',
           backgroundColor: isOpen ? '#F5F5F5' : 'transparent',
+          cursor: 'pointer',
         }}
       >
         <Globe size={16} />
@@ -64,13 +65,14 @@ const LanguageSwitcher = () => {
               <button
                 key={loc}
                 onClick={() => handleLocaleChange(loc)}
-                className="w-full flex items-center text-left transition-colors duration-100"
+                className="w-full flex items-center text-left transition-colors duration-100 hover:bg-gray-50"
                 style={{
                   padding: '10px 14px',
                   fontSize: '14px',
                   fontWeight: 500,
                   color: locale === loc ? '#673DE6' : '#404040',
                   backgroundColor: locale === loc ? '#F5F3FF' : 'transparent',
+                  cursor: 'pointer',
                 }}
               >
                 {localeNames[loc]}
