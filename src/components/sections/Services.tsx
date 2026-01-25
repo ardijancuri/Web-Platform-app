@@ -47,7 +47,7 @@ const Services = () => {
     >
       <div className="container">
         {/* Two Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left - Title + Accordion */}
           <div>
             {/* Header */}
@@ -82,7 +82,7 @@ const Services = () => {
                 }}
               >
                 <button
-                  onClick={() => setExpandedIndex(expandedIndex === index ? -1 : index)}
+                  onClick={() => setExpandedIndex(index)}
                   className="w-full flex items-center justify-between text-left"
                   style={{
                     padding: '24px 0',
@@ -162,7 +162,7 @@ const Services = () => {
           <div className="hidden lg:block sticky top-32">
             <AnimatePresence mode="wait">
               <motion.div
-                key={expandedIndex >= 0 ? expandedIndex : 'default'}
+                key={expandedIndex}
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
@@ -174,8 +174,8 @@ const Services = () => {
                 }}
               >
                 <Image
-                  src={expandedIndex >= 0 ? services[expandedIndex].image : services[0].image}
-                  alt={expandedIndex >= 0 ? services[expandedIndex].title : services[0].title}
+                  src={services[expandedIndex].image}
+                  alt={services[expandedIndex].title}
                   fill
                   className="object-cover"
                 />

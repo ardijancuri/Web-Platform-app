@@ -196,7 +196,7 @@ const Portfolio = () => {
                   <h3
                     style={{
                       fontSize: '26px',
-                      fontWeight: 700,
+                      fontWeight: 500,
                       color: '#FFFFFF',
                       marginBottom: '6px',
                     }}
@@ -403,7 +403,7 @@ const Portfolio = () => {
               <h3
                 style={{
                   fontSize: '22px',
-                  fontWeight: 700,
+                  fontWeight: 500,
                   color: '#FFFFFF',
                   marginBottom: '10px',
                 }}

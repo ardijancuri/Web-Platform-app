@@ -83,15 +83,15 @@ const Hero = () => {
               style={{ gap: '32px', paddingTop: '24px', borderTop: '1px solid #E5E5E5' }}
             >
               <div>
-                <div style={{ fontSize: '28px', fontWeight: 700, color: '#171717' }}>500+</div>
+                <div style={{ fontSize: '28px', fontWeight: 500, color: '#171717' }}>500+</div>
                 <div style={{ fontSize: '13px', color: '#737373' }}>{t('stats.websites')}</div>
               </div>
               <div>
-                <div style={{ fontSize: '28px', fontWeight: 700, color: '#171717' }}>300+</div>
+                <div style={{ fontSize: '28px', fontWeight: 500, color: '#171717' }}>300+</div>
                 <div style={{ fontSize: '13px', color: '#737373' }}>{t('stats.clients')}</div>
               </div>
               <div>
-                <div style={{ fontSize: '28px', fontWeight: 700, color: '#171717' }}>10+</div>
+                <div style={{ fontSize: '28px', fontWeight: 500, color: '#171717' }}>10+</div>
                 <div style={{ fontSize: '13px', color: '#737373' }}>{t('stats.experience')}</div>
               </div>
             </div>
