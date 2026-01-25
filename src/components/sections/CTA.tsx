@@ -60,7 +60,7 @@ const CTA = () => {
               <h2
                 style={{
                   fontSize: 'clamp(28px, 4vw, 40px)',
-                  fontWeight: 700,
+                  fontWeight: 400,
                   color: '#FFFFFF',
                   lineHeight: 1.2,
                   marginBottom: '16px',

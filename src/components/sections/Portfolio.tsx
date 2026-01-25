@@ -17,40 +17,35 @@ const Portfolio = () => {
       title: 'E-Commerce Fashion Store',
       category: 'E-Commerce',
       image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
-      color: '#673DE6',
-      size: 'large',
+      link: '/portfolio',
     },
     {
       id: 2,
       title: 'Tech Startup Landing',
       category: 'Website',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-      color: '#2563EB',
-      size: 'small',
+      link: '/portfolio',
     },
     {
       id: 3,
       title: 'Restaurant Booking App',
       category: 'Web App',
       image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop',
-      color: '#DC2626',
-      size: 'small',
+      link: '/portfolio',
     },
     {
       id: 4,
       title: 'Real Estate Platform',
       category: 'Website',
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
-      color: '#059669',
-      size: 'medium',
+      link: '/portfolio',
     },
     {
       id: 5,
       title: 'Project Management Tool',
       category: 'Web App',
       image: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&h=600&fit=crop',
-      color: '#7C3AED',
-      size: 'medium',
+      link: '/portfolio',
     },
   ];
 
@@ -65,7 +60,7 @@ const Portfolio = () => {
         {/* Header */}
         <div
           className="flex flex-col md:flex-row md:items-end md:justify-between"
-          style={{ marginBottom: '60px' }}
+          style={{ marginBottom: '48px' }}
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -89,7 +84,7 @@ const Portfolio = () => {
             <h2
               style={{
                 fontSize: 'clamp(32px, 5vw, 48px)',
-                fontWeight: 700,
+                fontWeight: 400,
                 color: '#0A0A0A',
                 lineHeight: 1.1,
                 maxWidth: '500px',
@@ -128,7 +123,7 @@ const Portfolio = () => {
         {/* Bento Grid Layout */}
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: '16px' }}
+          style={{ gap: '20px' }}
         >
           {/* Large Featured Project */}
           <motion.div
@@ -140,11 +135,12 @@ const Portfolio = () => {
             onMouseEnter={() => setHoveredProject(1)}
             onMouseLeave={() => setHoveredProject(null)}
           >
-            <div
-              className="relative w-full h-full overflow-hidden group cursor-pointer"
+            <Link
+              href={projects[0].link}
+              className="relative w-full h-full block overflow-hidden group"
               style={{
-                borderRadius: '20px',
-                minHeight: '500px',
+                borderRadius: '16px',
+                minHeight: '520px',
                 background: '#0A0A0A',
               }}
             >
@@ -152,23 +148,23 @@ const Portfolio = () => {
                 src={projects[0].image}
                 alt={projects[0].title}
                 fill
-                className="object-cover transition-all duration-700"
+                className="object-cover transition-all duration-500"
                 style={{
-                  opacity: hoveredProject === 1 ? 0.6 : 0.4,
-                  transform: hoveredProject === 1 ? 'scale(1.05)' : 'scale(1)',
+                  opacity: hoveredProject === 1 ? 0.7 : 0.5,
+                  transform: hoveredProject === 1 ? 'scale(1.03)' : 'scale(1)',
                 }}
               />
               <div
-                className="absolute inset-0 p-8 flex flex-col justify-between"
-                style={{ zIndex: 2 }}
+                className="absolute inset-0 flex flex-col justify-between"
+                style={{ padding: '28px', zIndex: 2 }}
               >
                 <div className="flex justify-between items-start">
                   <span
                     style={{
                       padding: '8px 16px',
-                      background: 'rgba(255,255,255,0.15)',
-                      backdropFilter: 'blur(10px)',
-                      borderRadius: '100px',
+                      background: 'rgba(255,255,255,0.2)',
+                      backdropFilter: 'blur(8px)',
+                      borderRadius: '8px',
                       color: '#FFFFFF',
                       fontSize: '13px',
                       fontWeight: 500,
@@ -176,14 +172,14 @@ const Portfolio = () => {
                   >
                     {projects[0].category}
                   </span>
-                  <div
+                  <span
                     className="flex items-center justify-center transition-all duration-300"
                     style={{
-                      width: '48px',
-                      height: '48px',
-                      borderRadius: '50%',
-                      background: hoveredProject === 1 ? '#FFFFFF' : 'rgba(255,255,255,0.15)',
-                      backdropFilter: 'blur(10px)',
+                      width: '44px',
+                      height: '44px',
+                      borderRadius: '12px',
+                      background: hoveredProject === 1 ? '#FFFFFF' : 'rgba(255,255,255,0.2)',
+                      backdropFilter: 'blur(8px)',
                     }}
                   >
                     <ArrowUpRight
@@ -194,15 +190,15 @@ const Portfolio = () => {
                         transform: hoveredProject === 1 ? 'translate(2px, -2px)' : 'none',
                       }}
                     />
-                  </div>
+                  </span>
                 </div>
                 <div>
                   <h3
                     style={{
-                      fontSize: '28px',
+                      fontSize: '26px',
                       fontWeight: 700,
                       color: '#FFFFFF',
-                      marginBottom: '8px',
+                      marginBottom: '6px',
                     }}
                   >
                     {projects[0].title}
@@ -210,15 +206,15 @@ const Portfolio = () => {
                   <p
                     style={{
                       fontSize: '15px',
-                      color: 'rgba(255,255,255,0.7)',
+                      color: 'rgba(255,255,255,0.75)',
                       maxWidth: '400px',
                     }}
                   >
-                    Modern online fashion store with seamless checkout and inventory management
+                    Modern online fashion store with seamless checkout
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           </motion.div>
 
           {/* Small Projects */}
@@ -232,11 +228,12 @@ const Portfolio = () => {
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
-              <div
-                className="relative w-full overflow-hidden group cursor-pointer"
+              <Link
+                href={project.link}
+                className="relative w-full block overflow-hidden group"
                 style={{
-                  borderRadius: '20px',
-                  height: '240px',
+                  borderRadius: '16px',
+                  height: '248px',
                   background: '#0A0A0A',
                 }}
               >
@@ -244,23 +241,23 @@ const Portfolio = () => {
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover transition-all duration-700"
+                  className="object-cover transition-all duration-500"
                   style={{
-                    opacity: hoveredProject === project.id ? 0.6 : 0.4,
-                    transform: hoveredProject === project.id ? 'scale(1.05)' : 'scale(1)',
+                    opacity: hoveredProject === project.id ? 0.7 : 0.5,
+                    transform: hoveredProject === project.id ? 'scale(1.03)' : 'scale(1)',
                   }}
                 />
                 <div
-                  className="absolute inset-0 p-6 flex flex-col justify-between"
-                  style={{ zIndex: 2 }}
+                  className="absolute inset-0 flex flex-col justify-between"
+                  style={{ padding: '24px', zIndex: 2 }}
                 >
                   <div className="flex justify-between items-start">
                     <span
                       style={{
-                        padding: '6px 12px',
-                        background: 'rgba(255,255,255,0.15)',
-                        backdropFilter: 'blur(10px)',
-                        borderRadius: '100px',
+                        padding: '6px 14px',
+                        background: 'rgba(255,255,255,0.2)',
+                        backdropFilter: 'blur(8px)',
+                        borderRadius: '8px',
                         color: '#FFFFFF',
                         fontSize: '12px',
                         fontWeight: 500,
@@ -268,14 +265,14 @@ const Portfolio = () => {
                     >
                       {project.category}
                     </span>
-                    <div
+                    <span
                       className="flex items-center justify-center transition-all duration-300"
                       style={{
                         width: '40px',
                         height: '40px',
-                        borderRadius: '50%',
-                        background: hoveredProject === project.id ? '#FFFFFF' : 'rgba(255,255,255,0.15)',
-                        backdropFilter: 'blur(10px)',
+                        borderRadius: '10px',
+                        background: hoveredProject === project.id ? '#FFFFFF' : 'rgba(255,255,255,0.2)',
+                        backdropFilter: 'blur(8px)',
                       }}
                     >
                       <ArrowUpRight
@@ -286,7 +283,7 @@ const Portfolio = () => {
                           transform: hoveredProject === project.id ? 'translate(2px, -2px)' : 'none',
                         }}
                       />
-                    </div>
+                    </span>
                   </div>
                   <h3
                     style={{
@@ -298,7 +295,7 @@ const Portfolio = () => {
                     {project.title}
                   </h3>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
 
@@ -314,10 +311,11 @@ const Portfolio = () => {
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
-              <div
-                className="relative w-full overflow-hidden group cursor-pointer"
+              <Link
+                href={project.link}
+                className="relative w-full block overflow-hidden group"
                 style={{
-                  borderRadius: '20px',
+                  borderRadius: '16px',
                   height: '280px',
                   background: '#0A0A0A',
                 }}
@@ -326,23 +324,23 @@ const Portfolio = () => {
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover transition-all duration-700"
+                  className="object-cover transition-all duration-500"
                   style={{
-                    opacity: hoveredProject === project.id ? 0.6 : 0.4,
-                    transform: hoveredProject === project.id ? 'scale(1.05)' : 'scale(1)',
+                    opacity: hoveredProject === project.id ? 0.7 : 0.5,
+                    transform: hoveredProject === project.id ? 'scale(1.03)' : 'scale(1)',
                   }}
                 />
                 <div
-                  className="absolute inset-0 p-6 flex flex-col justify-between"
-                  style={{ zIndex: 2 }}
+                  className="absolute inset-0 flex flex-col justify-between"
+                  style={{ padding: '24px', zIndex: 2 }}
                 >
                   <div className="flex justify-between items-start">
                     <span
                       style={{
-                        padding: '6px 12px',
-                        background: 'rgba(255,255,255,0.15)',
-                        backdropFilter: 'blur(10px)',
-                        borderRadius: '100px',
+                        padding: '6px 14px',
+                        background: 'rgba(255,255,255,0.2)',
+                        backdropFilter: 'blur(8px)',
+                        borderRadius: '8px',
                         color: '#FFFFFF',
                         fontSize: '12px',
                         fontWeight: 500,
@@ -350,14 +348,14 @@ const Portfolio = () => {
                     >
                       {project.category}
                     </span>
-                    <div
+                    <span
                       className="flex items-center justify-center transition-all duration-300"
                       style={{
                         width: '40px',
                         height: '40px',
-                        borderRadius: '50%',
-                        background: hoveredProject === project.id ? '#FFFFFF' : 'rgba(255,255,255,0.15)',
-                        backdropFilter: 'blur(10px)',
+                        borderRadius: '10px',
+                        background: hoveredProject === project.id ? '#FFFFFF' : 'rgba(255,255,255,0.2)',
+                        backdropFilter: 'blur(8px)',
                       }}
                     >
                       <ArrowUpRight
@@ -368,7 +366,7 @@ const Portfolio = () => {
                           transform: hoveredProject === project.id ? 'translate(2px, -2px)' : 'none',
                         }}
                       />
-                    </div>
+                    </span>
                   </div>
                   <h3
                     style={{
@@ -380,7 +378,7 @@ const Portfolio = () => {
                     {project.title}
                   </h3>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
 
@@ -396,18 +394,18 @@ const Portfolio = () => {
               href="/contact"
               className="relative w-full h-full flex flex-col justify-center items-center text-center group"
               style={{
-                borderRadius: '20px',
+                borderRadius: '16px',
                 minHeight: '280px',
                 background: 'linear-gradient(135deg, #673DE6 0%, #4F28B3 100%)',
-                padding: '40px',
+                padding: '32px',
               }}
             >
               <h3
                 style={{
-                  fontSize: '24px',
+                  fontSize: '22px',
                   fontWeight: 700,
                   color: '#FFFFFF',
-                  marginBottom: '12px',
+                  marginBottom: '10px',
                 }}
               >
                 Have a project in mind?
@@ -416,7 +414,7 @@ const Portfolio = () => {
                 style={{
                   fontSize: '15px',
                   color: 'rgba(255,255,255,0.8)',
-                  marginBottom: '24px',
+                  marginBottom: '20px',
                 }}
               >
                 Let&apos;s work together
@@ -426,7 +424,7 @@ const Portfolio = () => {
                 style={{
                   padding: '12px 24px',
                   background: '#FFC107',
-                  borderRadius: '100px',
+                  borderRadius: '10px',
                   color: '#0A0A0A',
                   fontSize: '14px',
                   fontWeight: 600,

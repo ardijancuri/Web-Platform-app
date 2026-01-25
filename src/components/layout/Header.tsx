@@ -216,8 +216,8 @@ const Header = () => {
           </span>
         </Link>
 
-        {/* Desktop Navigation - centered */}
-        <div className="hidden lg:flex items-center justify-center flex-1" style={{ gap: '32px' }}>
+        {/* Desktop Navigation - left aligned */}
+        <div className="hidden lg:flex items-center flex-1" style={{ gap: '32px', marginLeft: '48px' }}>
           {/* Services Trigger */}
           <button
             className="flex items-center gap-1 py-2 font-medium transition-colors hover:text-purple-600"
