@@ -1,0 +1,249 @@
+{
+  "meta": {
+    "title": "WebCraft Pro - Professional Web Solutions",
+    "description": "Create stunning websites, e-commerce stores, and web applications with our professional services"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "webDesign": "Web Design",
+    "ecommerce": "E-Commerce",
+    "webApps": "Web Applications",
+    "hosting": "Hosting & Domains",
+    "pricing": "Pricing",
+    "portfolio": "Portfolio",
+    "about": "About Us",
+    "contact": "Contact",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "badge": "Professional Web Solutions",
+    "title": "Build Your Digital",
+    "titleHighlight": "Presence",
+    "subtitle": "Create stunning websites, powerful e-commerce stores, and custom web applications that drive results. Trusted by 500+ businesses.",
+    "cta": "Start Your Project",
+    "ctaSecondary": "View Our Work",
+    "stats": {
+      "websites": "Websites Created",
+      "clients": "Happy Clients",
+      "experience": "Years Experience",
+      "support": "Support"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Everything you need to succeed online",
+    "webDesign": {
+      "title": "Website Design",
+      "description": "Custom-designed, responsive websites that captivate visitors and convert them into customers.",
+      "features": ["Responsive Design", "SEO Optimized", "Fast Loading", "Modern UI/UX"]
+    },
+    "ecommerce": {
+      "title": "E-Commerce Solutions",
+      "description": "Powerful online stores with secure payments, inventory management, and seamless checkout.",
+      "features": ["Secure Payments", "Inventory Management", "Order Tracking", "Multi-currency"]
+    },
+    "webApps": {
+      "title": "Web Applications",
+      "description": "Custom web applications tailored to your business needs with cutting-edge technology.",
+      "features": ["Custom Development", "API Integration", "Cloud Hosting", "Scalable"]
+    },
+    "hosting": {
+      "title": "Hosting & Domains",
+      "description": "Reliable, fast, and secure hosting solutions with 99.9% uptime guarantee.",
+      "features": ["99.9% Uptime", "SSL Certificates", "Daily Backups", "24/7 Support"]
+    },
+    "learnMore": "Learn More"
+  },
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Choose the perfect plan for your business",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "popular": "Most Popular",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us",
+    "features": "Features",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "description": "Perfect for small businesses just getting started",
+        "price": "€299",
+        "period": "one-time",
+        "features": [
+          "Single page website",
+          "Mobile responsive",
+          "Contact form",
+          "Basic SEO",
+          "1 month support"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "description": "Ideal for growing businesses that need more",
+        "price": "€599",
+        "period": "one-time",
+        "features": [
+          "Up to 5 pages",
+          "Mobile responsive",
+          "Contact form & maps",
+          "Advanced SEO",
+          "Social media integration",
+          "3 months support"
+        ]
+      },
+      "ecommerce": {
+        "name": "E-Commerce",
+        "description": "Complete solution for online selling",
+        "price": "€999",
+        "period": "one-time",
+        "features": [
+          "Full online store",
+          "Payment integration",
+          "Product management",
+          "Order tracking",
+          "Inventory system",
+          "6 months support"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Custom solutions for large organizations",
+        "price": "Custom",
+        "period": "",
+        "features": [
+          "Custom development",
+          "Dedicated support",
+          "Priority response",
+          "Custom integrations",
+          "SLA guarantee",
+          "Ongoing maintenance"
+        ]
+      }
+    }
+  },
+  "portfolio": {
+    "title": "Our Work",
+    "subtitle": "See what we've built for our clients",
+    "viewProject": "View Project",
+    "viewAll": "View All Projects",
+    "categories": {
+      "all": "All",
+      "websites": "Websites",
+      "ecommerce": "E-Commerce",
+      "webapps": "Web Apps"
+    }
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Trusted by businesses across the region"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Your trusted partner in digital transformation",
+    "story": {
+      "title": "Our Story",
+      "description": "Founded with a passion for creating exceptional digital experiences, we've grown into a full-service web development agency serving clients across the Balkans and beyond. Our team combines technical expertise with creative vision to deliver solutions that drive real business results."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To empower businesses with powerful, beautiful, and effective web solutions that help them thrive in the digital age."
+    },
+    "values": {
+      "title": "Our Values",
+      "quality": {
+        "title": "Quality First",
+        "description": "We never compromise on quality"
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Always using cutting-edge technology"
+      },
+      "support": {
+        "title": "Client Support",
+        "description": "We're here for you, always"
+      },
+      "transparency": {
+        "title": "Transparency",
+        "description": "Clear communication at every step"
+      }
+    },
+    "team": {
+      "title": "Meet Our Team",
+      "subtitle": "Experts dedicated to your success"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Let's discuss your project",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "company": "Company Name",
+      "service": "Service Interested In",
+      "selectService": "Select a service",
+      "budget": "Budget Range",
+      "selectBudget": "Select budget range",
+      "message": "Tell us about your project",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Thank you! We'll get back to you soon.",
+      "error": "Something went wrong. Please try again."
+    },
+    "info": {
+      "title": "Contact Information",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Working Hours",
+      "hoursValue": "Mon - Fri: 9:00 - 17:00"
+    }
+  },
+  "footer": {
+    "description": "Professional web development services for businesses of all sizes. We create websites, e-commerce stores, and web applications that drive results.",
+    "services": "Services",
+    "company": "Company",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy",
+    "newsletter": {
+      "title": "Stay Updated",
+      "placeholder": "Enter your email",
+      "button": "Subscribe"
+    },
+    "copyright": "© 2024 WebCraft Pro. All rights reserved."
+  },
+  "cta": {
+    "title": "Ready to Start Your Project?",
+    "subtitle": "Let's build something amazing together",
+    "button": "Get Free Consultation"
+  },
+  "trustedBy": {
+    "title": "Trusted by businesses across the region"
+  },
+  "features": {
+    "badge": "Why Choose Us",
+    "title": "From idea to online, quickly",
+    "subtitle": "We make it easy to build and launch your digital presence",
+    "items": {
+      "speed": {
+        "title": "Fast Delivery",
+        "description": "Get your website live in weeks, not months. Our streamlined process ensures quick turnaround without sacrificing quality."
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Our dedicated support team is always available to help you with any questions or issues."
+      },
+      "security": {
+        "title": "Secure & Reliable",
+        "description": "Built with security best practices and hosted on reliable infrastructure with 99.9% uptime."
+      },
+      "seo": {
+        "title": "SEO Optimized",
+        "description": "Every website is built with search engine optimization in mind to help you rank higher."
+      }
+    }
+  }
+}

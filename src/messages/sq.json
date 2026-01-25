@@ -1,0 +1,249 @@
+{
+  "meta": {
+    "title": "WebCraft Pro - Zgjidhje Profesionale Web",
+    "description": "Krijoni faqe interneti mahnitëse, dyqane e-commerce dhe aplikacione web me shërbimet tona profesionale"
+  },
+  "nav": {
+    "home": "Ballina",
+    "services": "Shërbimet",
+    "webDesign": "Dizajn Web",
+    "ecommerce": "E-Commerce",
+    "webApps": "Aplikacione Web",
+    "hosting": "Hosting & Domene",
+    "pricing": "Çmimet",
+    "portfolio": "Portfolio",
+    "about": "Rreth Nesh",
+    "contact": "Kontakt",
+    "getStarted": "Fillo Tani"
+  },
+  "hero": {
+    "badge": "Zgjidhje Profesionale Web",
+    "title": "Ndërtoni Praninë Tuaj",
+    "titleHighlight": "Dixhitale",
+    "subtitle": "Krijoni faqe interneti mahnitëse, dyqane online të fuqishme dhe aplikacione web të personalizuara që sjellin rezultate. Besuar nga 500+ biznese.",
+    "cta": "Filloni Projektin Tuaj",
+    "ctaSecondary": "Shikoni Punën Tonë",
+    "stats": {
+      "websites": "Faqe të Krijuara",
+      "clients": "Klientë të Kënaqur",
+      "experience": "Vite Përvojë",
+      "support": "Mbështetje"
+    }
+  },
+  "services": {
+    "title": "Shërbimet Tona",
+    "subtitle": "Gjithçka që ju nevojitet për sukses online",
+    "webDesign": {
+      "title": "Dizajn Web",
+      "description": "Faqe interneti të dizajnuara me porosi, responsive që tërheqin vizitorët dhe i kthejnë në klientë.",
+      "features": ["Dizajn Responsive", "SEO i Optimizuar", "Ngarkim i Shpejtë", "UI/UX Modern"]
+    },
+    "ecommerce": {
+      "title": "Zgjidhje E-Commerce",
+      "description": "Dyqane online të fuqishme me pagesa të sigurta, menaxhim inventari dhe checkout pa probleme.",
+      "features": ["Pagesa të Sigurta", "Menaxhim Inventari", "Gjurmim Porosish", "Multi-valutë"]
+    },
+    "webApps": {
+      "title": "Aplikacione Web",
+      "description": "Aplikacione web të personalizuara sipas nevojave të biznesit tuaj me teknologji të fundit.",
+      "features": ["Zhvillim i Personalizuar", "Integrim API", "Hosting Cloud", "I Shkallëzueshëm"]
+    },
+    "hosting": {
+      "title": "Hosting & Domene",
+      "description": "Zgjidhje hostingu të besueshme, të shpejta dhe të sigurta me garanci 99.9% uptime.",
+      "features": ["99.9% Uptime", "Çertifikata SSL", "Backup Ditore", "Mbështetje 24/7"]
+    },
+    "learnMore": "Mëso Më Shumë"
+  },
+  "pricing": {
+    "title": "Çmime të Thjeshta, Transparente",
+    "subtitle": "Zgjidhni planin perfekt për biznesin tuaj",
+    "monthly": "Mujore",
+    "yearly": "Vjetore",
+    "popular": "Më Popullorja",
+    "getStarted": "Fillo Tani",
+    "contactUs": "Na Kontaktoni",
+    "features": "Karakteristikat",
+    "plans": {
+      "starter": {
+        "name": "Fillestare",
+        "description": "Perfekte për bizneset e vogla që sapo fillojnë",
+        "price": "€299",
+        "period": "njëherësh",
+        "features": [
+          "Faqe njëfaqëshe",
+          "Responsive për celular",
+          "Formë kontakti",
+          "SEO bazike",
+          "1 muaj mbështetje"
+        ]
+      },
+      "business": {
+        "name": "Biznes",
+        "description": "Ideale për bizneset në rritje që kanë nevojë për më shumë",
+        "price": "€599",
+        "period": "njëherësh",
+        "features": [
+          "Deri në 5 faqe",
+          "Responsive për celular",
+          "Formë kontakti & harta",
+          "SEO e avancuar",
+          "Integrim me rrjete sociale",
+          "3 muaj mbështetje"
+        ]
+      },
+      "ecommerce": {
+        "name": "E-Commerce",
+        "description": "Zgjidhje e plotë për shitje online",
+        "price": "€999",
+        "period": "njëherësh",
+        "features": [
+          "Dyqan online i plotë",
+          "Integrim pagesash",
+          "Menaxhim produktesh",
+          "Gjurmim porosish",
+          "Sistem inventari",
+          "6 muaj mbështetje"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Zgjidhje të personalizuara për organizata të mëdha",
+        "price": "Me Porosi",
+        "period": "",
+        "features": [
+          "Zhvillim i personalizuar",
+          "Mbështetje dedikuar",
+          "Përgjigje prioritare",
+          "Integrime të personalizuara",
+          "Garanci SLA",
+          "Mirëmbajtje e vazhdueshme"
+        ]
+      }
+    }
+  },
+  "portfolio": {
+    "title": "Puna Jonë",
+    "subtitle": "Shikoni çfarë kemi ndërtuar për klientët tanë",
+    "viewProject": "Shiko Projektin",
+    "viewAll": "Shiko Të Gjitha Projektet",
+    "categories": {
+      "all": "Të Gjitha",
+      "websites": "Faqe Interneti",
+      "ecommerce": "E-Commerce",
+      "webapps": "Aplikacione Web"
+    }
+  },
+  "testimonials": {
+    "title": "Çfarë Thonë Klientët Tanë",
+    "subtitle": "Besuar nga bizneset në rajon"
+  },
+  "about": {
+    "title": "Rreth Nesh",
+    "subtitle": "Partneri juaj i besuar në transformimin dixhital",
+    "story": {
+      "title": "Historia Jonë",
+      "description": "Themeluar me pasion për krijimin e përvojave dixhitale të jashtëzakonshme, jemi rritur në një agjenci të plotë zhvillimi web që shërben klientët në Ballkan dhe më gjerë. Ekipi ynë kombinon ekspertizën teknike me vizionin kreativ për të ofruar zgjidhje që sjellin rezultate të vërteta biznesi."
+    },
+    "mission": {
+      "title": "Misioni Ynë",
+      "description": "Të fuqizojmë bizneset me zgjidhje web të fuqishme, të bukura dhe efektive që i ndihmojnë të lulëzojnë në epokën dixhitale."
+    },
+    "values": {
+      "title": "Vlerat Tona",
+      "quality": {
+        "title": "Cilësia e Parë",
+        "description": "Nuk bëjmë kurrë kompromis me cilësinë"
+      },
+      "innovation": {
+        "title": "Inovacion",
+        "description": "Gjithmonë duke përdorur teknologji të fundit"
+      },
+      "support": {
+        "title": "Mbështetje Klientësh",
+        "description": "Jemi këtu për ju, gjithmonë"
+      },
+      "transparency": {
+        "title": "Transparencë",
+        "description": "Komunikim i qartë në çdo hap"
+      }
+    },
+    "team": {
+      "title": "Njihuni me Ekipin Tonë",
+      "subtitle": "Ekspertë të përkushtuar për suksesin tuaj"
+    }
+  },
+  "contact": {
+    "title": "Na Kontaktoni",
+    "subtitle": "Le të diskutojmë projektin tuaj",
+    "form": {
+      "name": "Emri i Plotë",
+      "email": "Adresa Email",
+      "phone": "Numri i Telefonit",
+      "company": "Emri i Kompanisë",
+      "service": "Shërbimi i Interesuar",
+      "selectService": "Zgjidhni një shërbim",
+      "budget": "Buxheti",
+      "selectBudget": "Zgjidhni buxhetin",
+      "message": "Na tregoni për projektin tuaj",
+      "submit": "Dërgo Mesazhin",
+      "sending": "Duke dërguar...",
+      "success": "Faleminderit! Do t'ju kontaktojmë së shpejti.",
+      "error": "Diçka shkoi keq. Ju lutemi provoni përsëri."
+    },
+    "info": {
+      "title": "Informacione Kontakti",
+      "address": "Adresa",
+      "phone": "Telefon",
+      "email": "Email",
+      "hours": "Orari i Punës",
+      "hoursValue": "Hën - Pre: 9:00 - 17:00"
+    }
+  },
+  "footer": {
+    "description": "Shërbime profesionale zhvillimi web për biznese të të gjitha madhësive. Krijojmë faqe interneti, dyqane e-commerce dhe aplikacione web që sjellin rezultate.",
+    "services": "Shërbimet",
+    "company": "Kompania",
+    "legal": "Ligjore",
+    "privacy": "Politika e Privatësisë",
+    "terms": "Kushtet e Shërbimit",
+    "cookies": "Politika e Cookies",
+    "newsletter": {
+      "title": "Qëndroni të Informuar",
+      "placeholder": "Vendosni emailin tuaj",
+      "button": "Abonohu"
+    },
+    "copyright": "© 2024 WebCraft Pro. Të gjitha të drejtat e rezervuara."
+  },
+  "cta": {
+    "title": "Gati të Filloni Projektin Tuaj?",
+    "subtitle": "Le të ndërtojmë diçka të mahnitshme së bashku",
+    "button": "Merrni Konsultim Falas"
+  },
+  "trustedBy": {
+    "title": "Besuar nga bizneset në rajon"
+  },
+  "features": {
+    "badge": "Pse Ne",
+    "title": "Nga ideja në online, shpejt",
+    "subtitle": "E bëjmë të lehtë ndërtimin dhe lançimin e pranisë tuaj dixhitale",
+    "items": {
+      "speed": {
+        "title": "Dorëzim i Shpejtë",
+        "description": "Merrni faqen tuaj online në javë, jo muaj. Procesi ynë siguron dorëzim të shpejtë pa sakrifikuar cilësinë."
+      },
+      "support": {
+        "title": "Mbështetje 24/7",
+        "description": "Ekipi ynë i dedikuar i mbështetjes është gjithmonë i disponueshëm për t'ju ndihmuar me çdo pyetje ose problem."
+      },
+      "security": {
+        "title": "E Sigurt & E Besueshme",
+        "description": "Ndërtuar me praktikat më të mira të sigurisë dhe hostuar në infrastrukturë të besueshme me 99.9% uptime."
+      },
+      "seo": {
+        "title": "SEO i Optimizuar",
+        "description": "Çdo faqe ndërtohet me optimizim për motorët e kërkimit për t'ju ndihmuar të renditet më lart."
+      }
+    }
+  }
+}
