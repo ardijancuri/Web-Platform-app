@@ -181,10 +181,8 @@
       "email": "Adresa Email",
       "phone": "Numri i Telefonit",
       "company": "Emri i Kompanisë",
-      "service": "Shërbimi i Interesuar",
-      "selectService": "Zgjidhni një shërbim",
-      "budget": "Buxheti",
-      "selectBudget": "Zgjidhni buxhetin",
+      "plan": "Plani i Çmimeve",
+      "selectPlan": "Zgjidhni një plan",
       "message": "Na tregoni për projektin tuaj",
       "submit": "Dërgo Mesazhin",
       "sending": "Duke dërguar...",
@@ -213,7 +211,7 @@
       "placeholder": "Vendosni emailin tuaj",
       "button": "Abonohu"
     },
-    "copyright": "© 2024 oniweb. Të gjitha të drejtat e rezervuara."
+    "copyright": "© 2026 oniweb. Të gjitha të drejtat e rezervuara."
   },
   "cta": {
     "title": "Gati të Filloni Projektin Tuaj?",

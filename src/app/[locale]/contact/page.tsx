@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
   Mail,
@@ -16,16 +17,25 @@ import {
 export default function ContactPage() {
   const t = useTranslations('contact');
   const navT = useTranslations('nav');
+  const pricingT = useTranslations('pricing');
+  const searchParams = useSearchParams();
 
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     phone: '',
     company: '',
-    service: '',
-    budget: '',
+    plan: '',
     message: '',
   });
+
+  // Autofill plan from URL parameter
+  useEffect(() => {
+    const planParam = searchParams.get('plan');
+    if (planParam && ['starter', 'business', 'ecommerce', 'enterprise'].includes(planParam)) {
+      setFormState((prev) => ({ ...prev, plan: planParam }));
+    }
+  }, [searchParams]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -45,8 +55,7 @@ export default function ContactPage() {
         email: '',
         phone: '',
         company: '',
-        service: '',
-        budget: '',
+        plan: '',
         message: '',
       });
       setSubmitStatus('idle');
@@ -62,26 +71,19 @@ export default function ContactPage() {
     }));
   };
 
-  const services = [
-    { value: 'web-design', label: navT('webDesign') },
-    { value: 'ecommerce', label: navT('ecommerce') },
-    { value: 'web-apps', label: navT('webApps') },
-    { value: 'hosting', label: navT('hosting') },
-  ];
-
-  const budgets = [
-    { value: 'under-500', label: 'Under €500' },
-    { value: '500-1000', label: '€500 - €1,000' },
-    { value: '1000-5000', label: '€1,000 - €5,000' },
-    { value: '5000-plus', label: '€5,000+' },
+  const plans = [
+    { value: 'starter', label: pricingT('plans.starter.name') },
+    { value: 'business', label: pricingT('plans.business.name') },
+    { value: 'ecommerce', label: pricingT('plans.ecommerce.name') },
+    { value: 'enterprise', label: pricingT('plans.enterprise.name') },
   ];
 
   const contactInfo = [
     {
       icon: Mail,
       title: t('info.email'),
-      value: 'contact@webcraftpro.com',
-      href: 'mailto:contact@webcraftpro.com',
+      value: 'contact@oniweb.com',
+      href: 'mailto:contact@oniweb.com',
     },
     {
       icon: Phone,
@@ -369,59 +371,31 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2" style={{ gap: '20px', marginBottom: '20px' }}>
-                    <div>
-                      <label
-                        style={{
-                          display: 'block',
-                          fontSize: '14px',
-                          fontWeight: 500,
-                          color: '#404040',
-                          marginBottom: '8px',
-                        }}
-                      >
-                        {t('form.service')}
-                      </label>
-                      <select
-                        name="service"
-                        value={formState.service}
-                        onChange={handleChange}
-                        style={{ ...inputStyle, cursor: 'pointer' }}
-                      >
-                        <option value="">{t('form.selectService')}</option>
-                        {services.map((service) => (
-                          <option key={service.value} value={service.value}>
-                            {service.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label
-                        style={{
-                          display: 'block',
-                          fontSize: '14px',
-                          fontWeight: 500,
-                          color: '#404040',
-                          marginBottom: '8px',
-                        }}
-                      >
-                        {t('form.budget')}
-                      </label>
-                      <select
-                        name="budget"
-                        value={formState.budget}
-                        onChange={handleChange}
-                        style={{ ...inputStyle, cursor: 'pointer' }}
-                      >
-                        <option value="">{t('form.selectBudget')}</option>
-                        {budgets.map((budget) => (
-                          <option key={budget.value} value={budget.value}>
-                            {budget.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                  <div style={{ marginBottom: '20px' }}>
+                    <label
+                      style={{
+                        display: 'block',
+                        fontSize: '14px',
+                        fontWeight: 500,
+                        color: '#404040',
+                        marginBottom: '8px',
+                      }}
+                    >
+                      {t('form.plan')}
+                    </label>
+                    <select
+                      name="plan"
+                      value={formState.plan}
+                      onChange={handleChange}
+                      style={{ ...inputStyle, cursor: 'pointer' }}
+                    >
+                      <option value="">{t('form.selectPlan')}</option>
+                      {plans.map((plan) => (
+                        <option key={plan.value} value={plan.value}>
+                          {plan.label}
+                        </option>
+                      ))}
+                    </select>
                   </div>
 
                   <div style={{ marginBottom: '24px' }}>

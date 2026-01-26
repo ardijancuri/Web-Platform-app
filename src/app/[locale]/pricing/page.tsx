@@ -246,7 +246,7 @@ export default function PricingPage() {
 
                     <div style={{ padding: '0 32px 32px' }}>
                       <Link
-                        href="/contact"
+                        href={`/contact?plan=${plan.key}`}
                         className="w-full inline-flex items-center justify-center"
                         style={{
                           padding: '14px 28px',

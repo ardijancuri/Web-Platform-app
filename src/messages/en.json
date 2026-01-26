@@ -181,10 +181,8 @@
       "email": "Email Address",
       "phone": "Phone Number",
       "company": "Company Name",
-      "service": "Service Interested In",
-      "selectService": "Select a service",
-      "budget": "Budget Range",
-      "selectBudget": "Select budget range",
+      "plan": "Pricing Plan",
+      "selectPlan": "Select a plan",
       "message": "Tell us about your project",
       "submit": "Send Message",
       "sending": "Sending...",
@@ -213,7 +211,7 @@
       "placeholder": "Enter your email",
       "button": "Subscribe"
     },
-    "copyright": "© 2024 oniweb. All rights reserved."
+    "copyright": "© 2026 oniweb. All rights reserved."
   },
   "cta": {
     "title": "Ready to Start Your Project?",
