@@ -29,7 +29,7 @@ export default function PrivacyPage() {
     {
       title: '5. Contact Us',
       content:
-        'If you have any questions about this Privacy Policy, please contact us at privacy@webcraftpro.com or through our contact page.',
+        'If you have any questions about this Privacy Policy, please contact us at privacy@oniweb.com or through our contact page.',
     },
   ];
 

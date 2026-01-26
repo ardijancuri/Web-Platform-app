@@ -30,15 +30,50 @@ const Testimonials = () => {
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
       content: 'Professional service from start to finish. The booking system they built has streamlined our operations completely.',
     },
+    {
+      id: 4,
+      name: 'Elena Jovanovska',
+      role: 'Marketing Director, HealthCare Plus',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+      content: 'Working with OniWeb was a game-changer for our healthcare portal. Patient satisfaction scores improved significantly.',
+    },
+    {
+      id: 5,
+      name: 'Dragan Nikolovski',
+      role: 'CTO, FinTech Solutions',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
+      content: 'The web application they developed exceeded our expectations. Robust, secure, and beautifully designed.',
+    },
   ];
+
+  // Duplicate testimonials multiple times for seamless infinite scroll
+  const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials];
 
   return (
     <section
       style={{
         background: '#FFFFFF',
         padding: '100px 0',
+        overflow: 'hidden',
       }}
     >
+      <style jsx global>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .testimonials-track {
+          animation: scroll 60s linear infinite;
+        }
+        .testimonials-track:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
       <div className="container">
         {/* Section Header */}
         <motion.div
@@ -73,20 +108,32 @@ const Testimonials = () => {
             {t('title')}
           </h2>
         </motion.div>
+      </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-3" style={{ gap: '24px' }}>
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
+      {/* Infinite Scroll Container */}
+      <div
+        style={{
+          width: '100%',
+          overflow: 'hidden',
+        }}
+      >
+        <div
+          className="testimonials-track flex"
+          style={{
+            gap: '24px',
+            width: 'fit-content',
+          }}
+        >
+          {duplicatedTestimonials.map((testimonial, index) => (
+            <div
+              key={`${testimonial.id}-${index}`}
+              className="shrink-0"
+              style={{
+                width: '400px',
+              }}
             >
               <div
-                className="h-full flex flex-col transition-all duration-300"
+                className="h-full flex flex-col"
                 style={{
                   background: '#FAFAFA',
                   borderRadius: '20px',
@@ -157,7 +204,7 @@ const Testimonials = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

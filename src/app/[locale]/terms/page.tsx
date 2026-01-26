@@ -14,7 +14,7 @@ export default function TermsPage() {
     {
       title: '2. Services Description',
       content:
-        'WebCraft Pro provides web design, development, e-commerce solutions, and hosting services. The specific details, deliverables, and timelines will be outlined in individual project agreements or quotes.',
+        'oniweb provides web design, development, e-commerce solutions, and hosting services. The specific details, deliverables, and timelines will be outlined in individual project agreements or quotes.',
     },
     {
       title: '3. Payment Terms',
@@ -34,7 +34,7 @@ export default function TermsPage() {
     {
       title: '6. Contact',
       content:
-        'For any questions regarding these terms, please contact us at legal@webcraftpro.com or through our contact page.',
+        'For any questions regarding these terms, please contact us at legal@oniweb.com or through our contact page.',
     },
   ];
 

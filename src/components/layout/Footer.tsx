@@ -69,8 +69,8 @@ const Footer = () => {
               >
                 <span style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '18px' }}>W</span>
               </div>
-              <span style={{ fontWeight: 700, fontSize: '20px', color: '#FFFFFF' }}>
-                WebCraft<span style={{ color: '#673DE6' }}>Pro</span>
+              <span style={{ fontWeight: 500, fontSize: '20px', color: '#FFFFFF', fontFamily: 'Inter, sans-serif' }}>
+                Oni<span style={{ color: '#673DE6' }}>Web</span>
               </span>
             </Link>
             <p
@@ -88,12 +88,12 @@ const Footer = () => {
             {/* Contact Info */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <a
-                href="mailto:contact@webcraftpro.com"
+                href="mailto:contact@oniweb.com"
                 className="flex items-center transition-colors"
                 style={{ gap: '12px', color: '#A3A2A1', fontSize: '14px' }}
               >
                 <Mail size={18} style={{ color: '#673DE6' }} />
-                <span>contact@webcraftpro.com</span>
+                <span>contact@oniweb.com</span>
               </a>
               <a
                 href="tel:+38970123456"

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "WebCraft Pro - Zgjidhje Profesionale Web",
+    "title": "oniweb - Zgjidhje Profesionale Web",
     "description": "Krijoni faqe interneti mahnitëse, dyqane e-commerce dhe aplikacione web me shërbimet tona profesionale"
   },
   "nav": {
@@ -213,7 +213,7 @@
       "placeholder": "Vendosni emailin tuaj",
       "button": "Abonohu"
     },
-    "copyright": "© 2024 WebCraft Pro. Të gjitha të drejtat e rezervuara."
+    "copyright": "© 2024 oniweb. Të gjitha të drejtat e rezervuara."
   },
   "cta": {
     "title": "Gati të Filloni Projektin Tuaj?",

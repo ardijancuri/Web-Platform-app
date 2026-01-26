@@ -302,7 +302,7 @@ export default function CookiesPage() {
                 }}
               >
                 If you have any questions about our use of cookies, please contact us at
-                privacy@webcraftpro.com.
+                privacy@oniweb.com.
               </p>
             </motion.div>
           </div>

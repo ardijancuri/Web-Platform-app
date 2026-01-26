@@ -181,8 +181,8 @@ const Header = () => {
             >
               <span className="text-white font-bold text-base">W</span>
             </div>
-          <span className="font-bold text-lg" style={{ color: '#2D1F66' }}>
-            WebCraft<span style={{ color: '#673DE6' }}>Pro</span>
+          <span className="text-lg" style={{ color: '#2D1F66', fontFamily: 'Inter, sans-serif', fontWeight: 500 }}>
+            Oni<span style={{ color: '#673DE6' }}>Web</span>
           </span>
         </Link>
 
