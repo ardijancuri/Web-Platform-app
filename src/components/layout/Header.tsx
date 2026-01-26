@@ -59,6 +59,7 @@ const Header = () => {
     { href: '/pricing', label: t('pricing') },
     { href: '/portfolio', label: t('portfolio') },
     { href: '/about', label: t('about') },
+    { href: '/contact', label: t('contact') },
   ];
 
   const isActive = (href: string) => {
@@ -229,13 +230,6 @@ const Header = () => {
           <LanguageSwitcher />
           <Link
             href="/contact"
-            className="font-medium transition-colors hover:text-purple-600"
-            style={{ fontSize: '14px', color: '#2D1F66' }}
-          >
-            {t('contact')}
-          </Link>
-          <Link
-            href="/contact"
             className="btn btn-md"
             style={{
               background: '#FFC107',
@@ -338,14 +332,6 @@ const Header = () => {
                     {link.label}
                   </Link>
                 ))}
-                <Link
-                  href="/contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-3 py-2.5 rounded-lg font-medium transition-colors hover:bg-gray-50"
-                  style={{ fontSize: '14px', color: '#2D1F66' }}
-                >
-                  {t('contact')}
-                </Link>
               </div>
 
               {/* Bottom Actions */}

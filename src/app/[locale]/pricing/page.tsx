@@ -373,7 +373,7 @@ export default function PricingPage() {
       </section>
 
       {/* CTA */}
-      <section style={{ background: '#FAFAFA', padding: '100px 0' }}>
+      <section style={{ background: '#FFFFFF', paddingTop: '40px', paddingBottom: '100px' }}>
         <div className="container">
           <div
             className="relative overflow-hidden"
