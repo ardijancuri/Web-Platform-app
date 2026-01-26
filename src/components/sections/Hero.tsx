@@ -27,8 +27,8 @@ const Hero = () => {
         }}
       />
 
-      <div className="container relative z-10">
-        <div className="grid lg:grid-cols-2 items-center" style={{ gap: '48px' }}>
+      <div className="container relative z-10 overflow-hidden">
+        <div className="grid lg:grid-cols-2 items-center" style={{ gap: '32px' }}>
           {/* Content Column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -100,22 +100,24 @@ const Hero = () => {
 
           {/* Visual Column - Hero Image */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative"
+            className="relative w-full max-w-full"
           >
             <div
-              className="relative rounded-2xl overflow-hidden"
+              className="relative rounded-2xl overflow-hidden w-full max-w-full"
               style={{
-                minHeight: '420px',
+                aspectRatio: '4/3',
+                minHeight: '240px',
               }}
             >
               <Image
                 src="/hero-section-image.avif"
                 alt="Web Development"
                 fill
-                className="object-cover rounded-2xl"
+                className="object-cover object-center rounded-2xl"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 priority
               />
             </div>

@@ -1,28 +1,44 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 import {
   Menu,
   X,
   ChevronDown,
+  ChevronRight,
   Monitor,
   ShoppingCart,
   Code,
   Palette,
   Smartphone,
   Search,
+  ArrowRight,
+  Globe,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from '@/i18n/routing';
+import { useLocale } from 'next-intl';
+import { locales, localeNames, type Locale } from '@/i18n/config';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const Header = () => {
   const t = useTranslations('nav');
   const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale() as Locale;
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileLanguageOpen, setMobileLanguageOpen] = useState(false);
+  const languageDropdownRef = useRef<HTMLDivElement>(null);
+
+  const handleLocaleChange = (newLocale: Locale) => {
+    router.replace(pathname, { locale: newLocale });
+    setMobileLanguageOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +47,36 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      setMobileLanguageOpen(false); // Close language dropdown when menu opens
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        languageDropdownRef.current &&
+        !languageDropdownRef.current.contains(event.target as Node)
+      ) {
+        setMobileLanguageOpen(false);
+      }
+    };
+
+    if (mobileLanguageOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [mobileLanguageOpen]);
 
   // Mega menu structure for services only
   const servicesMegaMenu = {
@@ -167,8 +213,8 @@ const Header = () => {
       style={{ borderBottom: activeDropdown ? 'none' : '1px solid #EBEBEB' }}
     >
       <nav
-        className="flex items-center w-full"
-        style={{ height: '64px', padding: '0 40px' }}
+        className="flex items-center justify-between w-full"
+        style={{ height: '64px', padding: '0 16px' }}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
@@ -243,15 +289,89 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden p-2 rounded-lg transition-colors ml-auto"
-          style={{ color: '#2D1F66' }}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Language + Menu Button */}
+        <div className="lg:hidden flex items-center" style={{ gap: '8px' }}>
+          {/* Mobile Language Switcher */}
+          <div ref={languageDropdownRef}>
+            <button
+              onClick={() => setMobileLanguageOpen(!mobileLanguageOpen)}
+              className="flex items-center rounded-lg transition-colors"
+              style={{
+                padding: '8px 10px',
+                gap: '4px',
+                color: '#525252',
+                backgroundColor: mobileLanguageOpen ? '#F5F5F5' : 'transparent',
+              }}
+            >
+              <Globe size={18} />
+              <span style={{ fontSize: '13px', fontWeight: 500, textTransform: 'uppercase' }}>
+                {locale}
+              </span>
+              <ChevronDown
+                size={14}
+                style={{
+                  transition: 'transform 0.2s',
+                  transform: mobileLanguageOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                }}
+              />
+            </button>
+          </div>
+
+          {/* Hamburger Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="flex items-center justify-center rounded-lg transition-colors active:bg-gray-100"
+            style={{
+              color: '#2D1F66',
+              width: '44px',
+              height: '44px',
+            }}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile Language Dropdown - positioned under nav border */}
+      <AnimatePresence>
+        {mobileLanguageOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.15 }}
+            className="lg:hidden absolute left-0 right-0 overflow-hidden"
+            style={{
+              top: '64px',
+              background: '#FFFFFF',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              borderTop: '1px solid #EBEBEB',
+              zIndex: 60,
+              padding: '10px 0',
+            }}
+          >
+            <div style={{ padding: '8px 16px' }}>
+              {locales.map((loc) => (
+                <button
+                  key={loc}
+                  onClick={() => handleLocaleChange(loc)}
+                  className="w-full flex items-center transition-colors duration-100"
+                  style={{
+                    padding: '14px 12px',
+                    fontSize: '15px',
+                    fontWeight: 500,
+                    color: locale === loc ? '#673DE6' : '#404040',
+                    backgroundColor: locale === loc ? '#F5F3FF' : 'transparent',
+                    borderRadius: '8px',
+                  }}
+                >
+                  {localeNames[loc]}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Full-width Mega Menu Dropdown */}
       <AnimatePresence>
@@ -275,86 +395,199 @@ const Header = () => {
         )}
       </AnimatePresence>
 
-      {/* Mobile Menu */}
+      {/* Full Screen Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white overflow-hidden"
-            style={{ borderTop: '1px solid #EBEBEB' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden fixed inset-0 z-40"
+            style={{ top: '64px' }}
           >
-            <div style={{ padding: '16px 20px', maxHeight: '80vh', overflowY: 'auto' }}>
-              {/* Services Section */}
-              <div style={{ marginBottom: '16px' }}>
-                <h4
-                  style={{
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    color: '#8C8C8C',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                    marginBottom: '12px',
-                    paddingLeft: '12px',
-                  }}
-                >
-                  {t('services')}
-                </h4>
-                {servicesMegaMenu.sections.flatMap((section) =>
-                  section.items.map((item) => (
-                    <Link
-                      key={item.href + item.label}
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors hover:bg-gray-50"
-                    >
-                      <item.icon size={18} style={{ color: '#673DE6' }} />
-                      <span style={{ fontSize: '14px', color: '#2D1F66' }}>{item.label}</span>
-                    </Link>
-                  ))
-                )}
-              </div>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/20"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
 
-              {/* Other Links */}
-              <div style={{ paddingTop: '16px', borderTop: '1px solid #EBEBEB' }}>
+            {/* Menu Content */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.3 }}
+              className="absolute right-0 top-0 bottom-0 w-full bg-white overflow-y-auto"
+              style={{ maxWidth: '100%' }}
+            >
+              <div className="flex flex-col min-h-full" style={{ padding: '20px 20px' }}>
+                {/* Services Accordion */}
+                <div style={{ marginBottom: '8px' }}>
+                  <button
+                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    className="w-full flex items-center justify-between"
+                    style={{
+                      padding: '16px 0',
+                      borderBottom: '1px solid #F3F4F6',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: '18px',
+                        fontWeight: 500,
+                        color: '#0A0A0A',
+                      }}
+                    >
+                      {t('services')}
+                    </span>
+                    <ChevronDown
+                      size={20}
+                      style={{
+                        color: '#6B7280',
+                        transition: 'transform 0.2s',
+                        transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                      }}
+                    />
+                  </button>
+
+                  <AnimatePresence>
+                    {mobileServicesOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <div style={{ padding: '12px 0 8px' }}>
+                          {servicesMegaMenu.sections.map((section, idx) => (
+                            <div key={idx} style={{ marginBottom: '16px' }}>
+                              <h4
+                                style={{
+                                  fontSize: '11px',
+                                  fontWeight: 600,
+                                  color: '#9CA3AF',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '0.08em',
+                                  marginBottom: '12px',
+                                  paddingLeft: '4px',
+                                }}
+                              >
+                                {section.title}
+                              </h4>
+                              {section.items.map((item) => (
+                                <Link
+                                  key={item.href + item.label}
+                                  href={item.href}
+                                  onClick={() => {
+                                    setIsMobileMenuOpen(false);
+                                    setMobileServicesOpen(false);
+                                  }}
+                                  className="flex items-center gap-4 rounded-xl transition-all active:bg-gray-100"
+                                  style={{ padding: '12px 8px' }}
+                                >
+                                  <div
+                                    className="flex items-center justify-center rounded-xl shrink-0"
+                                    style={{
+                                      width: '44px',
+                                      height: '44px',
+                                      backgroundColor: '#F3F0FF',
+                                    }}
+                                  >
+                                    <item.icon size={20} style={{ color: '#673DE6' }} />
+                                  </div>
+                                  <div className="flex-1">
+                                    <div
+                                      style={{
+                                        fontSize: '15px',
+                                        fontWeight: 500,
+                                        color: '#1F2937',
+                                        marginBottom: '2px',
+                                      }}
+                                    >
+                                      {item.label}
+                                    </div>
+                                    <div style={{ fontSize: '13px', color: '#6B7280' }}>
+                                      {item.desc}
+                                    </div>
+                                  </div>
+                                  <ChevronRight size={18} style={{ color: '#D1D5DB' }} />
+                                </Link>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Main Navigation Links */}
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-3 py-2.5 rounded-lg font-medium transition-colors hover:bg-gray-50"
+                    className="flex items-center justify-between transition-all active:bg-gray-50"
                     style={{
-                      fontSize: '14px',
-                      color: isActive(link.href) ? '#673DE6' : '#2D1F66',
+                      padding: '16px 0',
+                      borderBottom: '1px solid #F3F4F6',
                     }}
                   >
-                    {link.label}
+                    <span
+                      style={{
+                        fontSize: '18px',
+                        fontWeight: 500,
+                        color: isActive(link.href) ? '#673DE6' : '#0A0A0A',
+                      }}
+                    >
+                      {link.label}
+                    </span>
+                    {isActive(link.href) && (
+                      <div
+                        style={{
+                          width: '8px',
+                          height: '8px',
+                          borderRadius: '50%',
+                          backgroundColor: '#673DE6',
+                        }}
+                      />
+                    )}
                   </Link>
                 ))}
-              </div>
 
-              {/* Bottom Actions */}
-              <div
-                className="flex items-center justify-between"
-                style={{ paddingTop: '16px', marginTop: '16px', borderTop: '1px solid #EBEBEB' }}
-              >
-                <LanguageSwitcher />
-                <Link
-                  href="/contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="btn btn-md"
+                {/* Spacer */}
+                <div className="flex-1" style={{ minHeight: '24px' }} />
+
+                {/* CTA Button */}
+                <div
                   style={{
-                    background: '#FFC107',
-                    color: '#2D1F66',
-                    fontWeight: 600,
-                    borderRadius: '8px',
+                    marginTop: 'auto',
                   }}
                 >
-                  {t('getStarted')}
-                </Link>
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="w-full flex items-center justify-center gap-2"
+                    style={{
+                      background: '#673DE6',
+                      color: '#FFFFFF',
+                      fontWeight: 600,
+                      fontSize: '16px',
+                      padding: '16px 24px',
+                      borderRadius: '12px',
+                    }}
+                  >
+                    {t('getStarted')}
+                    <ArrowRight size={18} />
+                  </Link>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
