@@ -236,8 +236,9 @@ const Header = () => {
         {/* Desktop Navigation - left aligned */}
         <div className="hidden lg:flex items-center flex-1" style={{ gap: '32px', marginLeft: '48px' }}>
           {/* Services Trigger */}
-          <button
-            className="flex items-center gap-1 py-2 font-medium transition-colors hover:text-purple-600"
+          <Link
+            href="/services"
+            className="flex items-center gap-1 py-2 font-medium transition-colors hover:text-purple-600 cursor-pointer"
             style={{
               fontSize: '14px',
               color: activeDropdown === 'services' || isActive('/services') ? '#673DE6' : '#2D1F66',
@@ -252,7 +253,7 @@ const Header = () => {
                 opacity: activeDropdown === 'services' ? 0.5 : 1,
               }}
             />
-          </button>
+          </Link>
 
           {/* Regular nav links */}
           {navLinks.map((link) => (
@@ -427,32 +428,40 @@ const Header = () => {
               <div className="flex flex-col min-h-full" style={{ padding: '20px 20px' }}>
                 {/* Services Accordion */}
                 <div style={{ marginBottom: '8px' }}>
-                  <button
-                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  <div
                     className="w-full flex items-center justify-between"
                     style={{
                       padding: '16px 0',
                       borderBottom: '1px solid #F3F4F6',
                     }}
                   >
-                    <span
+                    <Link
+                      href="/services"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="cursor-pointer"
                       style={{
                         fontSize: '18px',
                         fontWeight: 500,
-                        color: '#0A0A0A',
+                        color: isActive('/services') ? '#673DE6' : '#0A0A0A',
                       }}
                     >
                       {t('services')}
-                    </span>
-                    <ChevronDown
-                      size={20}
-                      style={{
-                        color: '#6B7280',
-                        transition: 'transform 0.2s',
-                        transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                      }}
-                    />
-                  </button>
+                    </Link>
+                    <button
+                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                      className="p-2 -mr-2"
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <ChevronDown
+                        size={20}
+                        style={{
+                          color: '#6B7280',
+                          transition: 'transform 0.2s',
+                          transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                        }}
+                      />
+                    </button>
+                  </div>
 
                   <AnimatePresence>
                     {mobileServicesOpen && (
