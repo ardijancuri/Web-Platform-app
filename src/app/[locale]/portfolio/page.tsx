@@ -122,53 +122,84 @@ export default function PortfolioPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary-900 via-primary-950 to-neutral-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)',
-              backgroundSize: '50px 50px',
-            }}
-          />
-        </div>
-        <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-primary-500/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl" />
-
-        <div className="container relative z-10">
+      <section
+        style={{
+          background: '#FFFFFF',
+          paddingTop: '140px',
+          paddingBottom: '80px',
+        }}
+      >
+        <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
+            transition={{ duration: 0.5 }}
+            className="text-center"
+            style={{ maxWidth: '800px', margin: '0 auto' }}
           >
-            <span className="badge badge-dark mb-6">Portfolio</span>
-            <h1 className="heading-1 text-white mb-6">{t('title')}</h1>
-            <p className="text-xl text-neutral-300 mb-8">{t('subtitle')}</p>
+            <span
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#673DE6',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                marginBottom: '16px',
+                display: 'block',
+              }}
+            >
+              Portfolio
+            </span>
+            <h1
+              style={{
+                fontSize: 'clamp(36px, 5vw, 56px)',
+                fontWeight: 400,
+                color: '#0A0A0A',
+                lineHeight: 1.15,
+                marginBottom: '20px',
+              }}
+            >
+              {t('title')}
+            </h1>
+            <p
+              style={{
+                fontSize: '18px',
+                color: '#525252',
+                lineHeight: 1.7,
+              }}
+            >
+              {t('subtitle')}
+            </p>
           </motion.div>
         </div>
       </section>
 
       {/* Portfolio Section */}
-      <section className="section">
+      <section style={{ background: '#FAFAFA', padding: '80px 0' }}>
         <div className="container">
           {/* Filter Tabs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-2 mb-12"
+            className="flex flex-wrap justify-center"
+            style={{ gap: '8px', marginBottom: '48px' }}
           >
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all ${
-                  activeCategory === category.id
-                    ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/25'
-                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
-                }`}
+                style={{
+                  padding: '12px 24px',
+                  borderRadius: '100px',
+                  fontWeight: 500,
+                  fontSize: '14px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  background: activeCategory === category.id ? '#0A0A0A' : '#FFFFFF',
+                  color: activeCategory === category.id ? '#FFFFFF' : '#525252',
+                }}
               >
                 {category.label}
               </button>
@@ -176,7 +207,7 @@ export default function PortfolioPage() {
           </motion.div>
 
           {/* Projects Grid */}
-          <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: '24px' }}>
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project) => (
                 <motion.div
@@ -186,33 +217,69 @@ export default function PortfolioPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
-                  className="group cursor-pointer"
+                  className="group"
+                  style={{ cursor: 'pointer' }}
                   onClick={() => setSelectedProject(project.id)}
                 >
-                  <div className="card overflow-hidden">
-                    <div className="relative aspect-[4/3] overflow-hidden">
+                  <div
+                    style={{
+                      background: '#FFFFFF',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      border: '1px solid #E5E5E5',
+                    }}
+                  >
+                    <div className="relative" style={{ aspectRatio: '4/3' }}>
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <button className="w-12 h-12 rounded-full bg-white text-primary-600 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                          <ExternalLink size={20} />
-                        </button>
+                      <div
+                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        style={{ background: 'rgba(0,0,0,0.4)' }}
+                      >
+                        <div
+                          style={{
+                            width: '48px',
+                            height: '48px',
+                            borderRadius: '50%',
+                            background: '#FFFFFF',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}
+                        >
+                          <ExternalLink size={20} style={{ color: '#673DE6' }} />
+                        </div>
                       </div>
                     </div>
 
-                    <div className="p-6">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-primary-600">
+                    <div style={{ padding: '24px' }}>
+                      <span
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: 600,
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.05em',
+                          color: '#673DE6',
+                        }}
+                      >
                         {categories.find((c) => c.id === project.category)?.label}
                       </span>
-                      <h3 className="heading-4 text-neutral-900 mt-2 mb-2">
+                      <h3
+                        style={{
+                          fontSize: '18px',
+                          fontWeight: 500,
+                          color: '#0A0A0A',
+                          marginTop: '8px',
+                          marginBottom: '8px',
+                        }}
+                      >
                         {project.title}
                       </h3>
-                      <p className="text-neutral-600 text-sm">
+                      <p style={{ fontSize: '14px', color: '#525252' }}>
                         {project.description}
                       </p>
                     </div>
@@ -231,7 +298,8 @@ export default function PortfolioPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center"
+            style={{ padding: '16px', background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)' }}
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
@@ -239,9 +307,16 @@ export default function PortfolioPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-auto"
+              style={{
+                background: '#FFFFFF',
+                borderRadius: '16px',
+                maxWidth: '800px',
+                width: '100%',
+                maxHeight: '90vh',
+                overflow: 'auto',
+              }}
             >
-              <div className="relative aspect-video">
+              <div className="relative" style={{ aspectRatio: '16/9' }}>
                 <Image
                   src={selectedProjectData.image}
                   alt={selectedProjectData.title}
@@ -250,41 +325,98 @@ export default function PortfolioPage() {
                 />
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 text-neutral-900 flex items-center justify-center hover:bg-white transition-colors"
+                  style={{
+                    position: 'absolute',
+                    top: '16px',
+                    right: '16px',
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    background: '#FFFFFF',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
                 >
-                  <X size={20} />
+                  <X size={20} style={{ color: '#0A0A0A' }} />
                 </button>
               </div>
 
-              <div className="p-8">
-                <span className="badge mb-4">
+              <div style={{ padding: '32px' }}>
+                <span
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    color: '#673DE6',
+                    display: 'inline-block',
+                    padding: '6px 12px',
+                    background: '#F5F3FF',
+                    borderRadius: '100px',
+                    marginBottom: '16px',
+                  }}
+                >
                   {categories.find((c) => c.id === selectedProjectData.category)?.label}
                 </span>
-                <h2 className="heading-3 text-neutral-900 mb-4">
+                <h2
+                  style={{
+                    fontSize: '28px',
+                    fontWeight: 400,
+                    color: '#0A0A0A',
+                    marginBottom: '16px',
+                  }}
+                >
                   {selectedProjectData.title}
                 </h2>
-                <p className="text-neutral-600 mb-6">
+                <p style={{ fontSize: '16px', color: '#525252', marginBottom: '32px' }}>
                   {selectedProjectData.description}
                 </p>
 
-                <div className="grid md:grid-cols-3 gap-6 mb-8">
+                <div className="grid md:grid-cols-3" style={{ gap: '24px', marginBottom: '32px' }}>
                   <div>
-                    <h4 className="text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-2">
+                    <h4
+                      style={{
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        color: '#737373',
+                        marginBottom: '8px',
+                      }}
+                    >
                       Client
                     </h4>
-                    <p className="text-neutral-900 font-medium">
+                    <p style={{ color: '#0A0A0A', fontWeight: 500 }}>
                       {selectedProjectData.client}
                     </p>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-2">
+                    <h4
+                      style={{
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        color: '#737373',
+                        marginBottom: '8px',
+                      }}
+                    >
                       Technologies
                     </h4>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap" style={{ gap: '8px' }}>
                       {selectedProjectData.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-1 bg-neutral-100 rounded-md text-sm text-neutral-700"
+                          style={{
+                            padding: '4px 10px',
+                            background: '#F5F5F5',
+                            borderRadius: '6px',
+                            fontSize: '13px',
+                            color: '#404040',
+                          }}
                         >
                           {tech}
                         </span>
@@ -292,10 +424,19 @@ export default function PortfolioPage() {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-2">
+                    <h4
+                      style={{
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        color: '#737373',
+                        marginBottom: '8px',
+                      }}
+                    >
                       Results
                     </h4>
-                    <p className="text-green-600 font-medium">
+                    <p style={{ color: '#22C55E', fontWeight: 500 }}>
                       {selectedProjectData.results}
                     </p>
                   </div>
@@ -303,7 +444,15 @@ export default function PortfolioPage() {
 
                 <Link
                   href="/contact"
-                  className="btn btn-primary"
+                  className="inline-flex items-center gap-2"
+                  style={{
+                    background: '#0A0A0A',
+                    color: '#FFFFFF',
+                    fontWeight: 500,
+                    fontSize: '14px',
+                    padding: '14px 28px',
+                    borderRadius: '8px',
+                  }}
                   onClick={() => setSelectedProject(null)}
                 >
                   Start a Similar Project
@@ -316,29 +465,87 @@ export default function PortfolioPage() {
       </AnimatePresence>
 
       {/* CTA */}
-      <section className="section bg-gradient-to-br from-primary-600 to-primary-900 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl" />
-        </div>
-        <div className="container relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+      <section style={{ background: '#FAFAFA', padding: '100px 0' }}>
+        <div className="container">
+          <div
+            className="relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, #673DE6 0%, #4F28B3 100%)',
+              borderRadius: '24px',
+              padding: 'clamp(48px, 8vw, 80px)',
+            }}
           >
-            <h2 className="heading-2 text-white mb-4">
-              Ready to Join Our Portfolio?
-            </h2>
-            <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-              Let&apos;s create something amazing together. Contact us to discuss your
-              project.
-            </p>
-            <Link href="/contact" className="btn btn-white btn-lg">
-              Start Your Project
-              <ArrowRight size={20} />
-            </Link>
-          </motion.div>
+            <div
+              className="absolute"
+              style={{
+                width: '400px',
+                height: '400px',
+                borderRadius: '50%',
+                background: 'rgba(255,255,255,0.08)',
+                top: '-200px',
+                right: '-100px',
+              }}
+            />
+            <div
+              className="absolute"
+              style={{
+                width: '200px',
+                height: '200px',
+                borderRadius: '50%',
+                background: 'rgba(255,255,255,0.05)',
+                bottom: '-50px',
+                left: '10%',
+              }}
+            />
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative z-10 text-center"
+              style={{ maxWidth: '600px', margin: '0 auto' }}
+            >
+              <h2
+                style={{
+                  fontSize: 'clamp(28px, 4vw, 40px)',
+                  fontWeight: 400,
+                  color: '#FFFFFF',
+                  lineHeight: 1.2,
+                  marginBottom: '16px',
+                }}
+              >
+                Ready to Join Our Portfolio?
+              </h2>
+              <p
+                style={{
+                  fontSize: '17px',
+                  color: 'rgba(255,255,255,0.8)',
+                  lineHeight: 1.6,
+                  marginBottom: '32px',
+                }}
+              >
+                Let&apos;s create something amazing together. Contact us to discuss your project.
+              </p>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 transition-all duration-300"
+                style={{
+                  background: '#FFC107',
+                  color: '#0A0A0A',
+                  fontWeight: 600,
+                  fontSize: '15px',
+                  padding: '16px 32px',
+                  borderRadius: '100px',
+                }}
+              >
+                Start Your Project
+                <ArrowRight
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
     </>

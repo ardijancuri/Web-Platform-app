@@ -11,8 +11,6 @@ import {
   Send,
   CheckCircle,
   AlertCircle,
-  MessageSquare,
-  Headphones,
 } from 'lucide-react';
 
 export default function ContactPage() {
@@ -36,13 +34,11 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setIsSubmitting(false);
     setSubmitStatus('success');
 
-    // Reset form after success
     setTimeout(() => {
       setFormState({
         name: '',
@@ -107,54 +103,96 @@ export default function ContactPage() {
     },
   ];
 
+  const inputStyle = {
+    width: '100%',
+    padding: '14px 16px',
+    fontSize: '15px',
+    border: '1px solid #E5E5E5',
+    borderRadius: '8px',
+    background: '#FFFFFF',
+    color: '#0A0A0A',
+    outline: 'none',
+  };
+
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary-900 via-primary-950 to-neutral-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)',
-              backgroundSize: '50px 50px',
-            }}
-          />
-        </div>
-        <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-primary-500/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl" />
-
-        <div className="container relative z-10">
+      <section
+        style={{
+          background: '#FFFFFF',
+          paddingTop: '140px',
+          paddingBottom: '80px',
+        }}
+      >
+        <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
+            transition={{ duration: 0.5 }}
+            className="text-center"
+            style={{ maxWidth: '800px', margin: '0 auto' }}
           >
-            <span className="badge badge-dark mb-6">{navT('contact')}</span>
-            <h1 className="heading-1 text-white mb-6">{t('title')}</h1>
-            <p className="text-xl text-neutral-300 mb-8">{t('subtitle')}</p>
+            <span
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#673DE6',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                marginBottom: '16px',
+                display: 'block',
+              }}
+            >
+              {navT('contact')}
+            </span>
+            <h1
+              style={{
+                fontSize: 'clamp(36px, 5vw, 56px)',
+                fontWeight: 400,
+                color: '#0A0A0A',
+                lineHeight: 1.15,
+                marginBottom: '20px',
+              }}
+            >
+              {t('title')}
+            </h1>
+            <p
+              style={{
+                fontSize: '18px',
+                color: '#525252',
+                lineHeight: 1.7,
+              }}
+            >
+              {t('subtitle')}
+            </p>
           </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="section">
+      <section style={{ background: '#FAFAFA', padding: '80px 0' }}>
         <div className="container">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3" style={{ gap: '48px' }}>
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
               className="lg:col-span-1"
             >
-              <h2 className="heading-3 text-neutral-900 mb-6">
+              <h2
+                style={{
+                  fontSize: '24px',
+                  fontWeight: 500,
+                  color: '#0A0A0A',
+                  marginBottom: '24px',
+                }}
+              >
                 {t('info.title')}
               </h2>
 
-              <div className="space-y-6 mb-8">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                 {contactInfo.map((item, index) => (
                   <motion.div
                     key={index}
@@ -162,48 +200,49 @@ export default function ContactPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex items-start gap-4"
+                    className="flex items-start"
+                    style={{ gap: '16px' }}
                   >
-                    <div className="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center flex-shrink-0">
-                      <item.icon size={24} className="text-primary-600" />
+                    <div
+                      style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '12px',
+                        background: '#FFFFFF',
+                        border: '1px solid #E5E5E5',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                      }}
+                    >
+                      <item.icon size={22} style={{ color: '#673DE6' }} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-neutral-900 mb-1">
+                      <h4
+                        style={{
+                          fontWeight: 500,
+                          color: '#0A0A0A',
+                          marginBottom: '4px',
+                          fontSize: '15px',
+                        }}
+                      >
                         {item.title}
                       </h4>
                       {item.href ? (
                         <a
                           href={item.href}
-                          className="text-neutral-600 hover:text-primary-600 transition-colors"
+                          style={{ color: '#525252', fontSize: '14px' }}
+                          className="hover:text-primary-600 transition-colors"
                         >
                           {item.value}
                         </a>
                       ) : (
-                        <p className="text-neutral-600">{item.value}</p>
+                        <p style={{ color: '#525252', fontSize: '14px' }}>{item.value}</p>
                       )}
                     </div>
                   </motion.div>
                 ))}
-              </div>
-
-              {/* Quick Support */}
-              <div className="card p-6 bg-gradient-to-br from-primary-50 to-white border-primary-100">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary-600 flex items-center justify-center">
-                    <Headphones size={20} className="text-white" />
-                  </div>
-                  <h4 className="font-semibold text-neutral-900">Need Quick Support?</h4>
-                </div>
-                <p className="text-neutral-600 text-sm mb-4">
-                  Our team is available during business hours to assist you with any questions.
-                </p>
-                <a
-                  href="tel:+38970123456"
-                  className="btn btn-primary w-full"
-                >
-                  <Phone size={18} />
-                  Call Us Now
-                </a>
               </div>
             </motion.div>
 
@@ -212,81 +251,142 @@ export default function ContactPage() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="lg:col-span-2"
             >
-              <div className="card p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center">
-                    <MessageSquare size={20} className="text-primary-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-neutral-900">Send us a message</h3>
-                    <p className="text-sm text-neutral-600">We&apos;ll get back to you within 24 hours</p>
-                  </div>
-                </div>
+              <div
+                style={{
+                  background: '#FFFFFF',
+                  borderRadius: '16px',
+                  padding: '40px',
+                  border: '1px solid #E5E5E5',
+                }}
+              >
+                <h3
+                  style={{
+                    fontWeight: 500,
+                    color: '#0A0A0A',
+                    marginBottom: '8px',
+                    fontSize: '20px',
+                  }}
+                >
+                  Send us a message
+                </h3>
+                <p style={{ fontSize: '14px', color: '#525252', marginBottom: '32px' }}>
+                  We&apos;ll get back to you within 24 hours
+                </p>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+                <form onSubmit={handleSubmit}>
+                  <div className="grid md:grid-cols-2" style={{ gap: '20px', marginBottom: '20px' }}>
                     <div>
-                      <label className="label">{t('form.name')}</label>
+                      <label
+                        style={{
+                          display: 'block',
+                          fontSize: '14px',
+                          fontWeight: 500,
+                          color: '#404040',
+                          marginBottom: '8px',
+                        }}
+                      >
+                        {t('form.name')}
+                      </label>
                       <input
                         type="text"
                         name="name"
                         value={formState.name}
                         onChange={handleChange}
                         required
-                        className="input"
+                        style={inputStyle}
                         placeholder="John Doe"
                       />
                     </div>
                     <div>
-                      <label className="label">{t('form.email')}</label>
+                      <label
+                        style={{
+                          display: 'block',
+                          fontSize: '14px',
+                          fontWeight: 500,
+                          color: '#404040',
+                          marginBottom: '8px',
+                        }}
+                      >
+                        {t('form.email')}
+                      </label>
                       <input
                         type="email"
                         name="email"
                         value={formState.email}
                         onChange={handleChange}
                         required
-                        className="input"
+                        style={inputStyle}
                         placeholder="john@example.com"
                       />
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2" style={{ gap: '20px', marginBottom: '20px' }}>
                     <div>
-                      <label className="label">{t('form.phone')}</label>
+                      <label
+                        style={{
+                          display: 'block',
+                          fontSize: '14px',
+                          fontWeight: 500,
+                          color: '#404040',
+                          marginBottom: '8px',
+                        }}
+                      >
+                        {t('form.phone')}
+                      </label>
                       <input
                         type="tel"
                         name="phone"
                         value={formState.phone}
                         onChange={handleChange}
-                        className="input"
+                        style={inputStyle}
                         placeholder="+389 70 123 456"
                       />
                     </div>
                     <div>
-                      <label className="label">{t('form.company')}</label>
+                      <label
+                        style={{
+                          display: 'block',
+                          fontSize: '14px',
+                          fontWeight: 500,
+                          color: '#404040',
+                          marginBottom: '8px',
+                        }}
+                      >
+                        {t('form.company')}
+                      </label>
                       <input
                         type="text"
                         name="company"
                         value={formState.company}
                         onChange={handleChange}
-                        className="input"
+                        style={inputStyle}
                         placeholder="Your Company"
                       />
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2" style={{ gap: '20px', marginBottom: '20px' }}>
                     <div>
-                      <label className="label">{t('form.service')}</label>
+                      <label
+                        style={{
+                          display: 'block',
+                          fontSize: '14px',
+                          fontWeight: 500,
+                          color: '#404040',
+                          marginBottom: '8px',
+                        }}
+                      >
+                        {t('form.service')}
+                      </label>
                       <select
                         name="service"
                         value={formState.service}
                         onChange={handleChange}
-                        className="input"
+                        style={{ ...inputStyle, cursor: 'pointer' }}
                       >
                         <option value="">{t('form.selectService')}</option>
                         {services.map((service) => (
@@ -297,12 +397,22 @@ export default function ContactPage() {
                       </select>
                     </div>
                     <div>
-                      <label className="label">{t('form.budget')}</label>
+                      <label
+                        style={{
+                          display: 'block',
+                          fontSize: '14px',
+                          fontWeight: 500,
+                          color: '#404040',
+                          marginBottom: '8px',
+                        }}
+                      >
+                        {t('form.budget')}
+                      </label>
                       <select
                         name="budget"
                         value={formState.budget}
                         onChange={handleChange}
-                        className="input"
+                        style={{ ...inputStyle, cursor: 'pointer' }}
                       >
                         <option value="">{t('form.selectBudget')}</option>
                         {budgets.map((budget) => (
@@ -314,25 +424,42 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div>
-                    <label className="label">{t('form.message')}</label>
+                  <div style={{ marginBottom: '24px' }}>
+                    <label
+                      style={{
+                        display: 'block',
+                        fontSize: '14px',
+                        fontWeight: 500,
+                        color: '#404040',
+                        marginBottom: '8px',
+                      }}
+                    >
+                      {t('form.message')}
+                    </label>
                     <textarea
                       name="message"
                       value={formState.message}
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="input resize-none"
+                      style={{ ...inputStyle, resize: 'none' }}
                       placeholder="Tell us about your project..."
                     />
                   </div>
 
-                  {/* Submit Status Messages */}
                   {submitStatus === 'success' && (
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-3 p-4 bg-green-50 text-green-700 rounded-xl"
+                      className="flex items-center"
+                      style={{
+                        gap: '12px',
+                        padding: '16px',
+                        background: '#ECFDF5',
+                        color: '#065F46',
+                        borderRadius: '8px',
+                        marginBottom: '24px',
+                      }}
                     >
                       <CheckCircle size={20} />
                       <span>{t('form.success')}</span>
@@ -343,7 +470,15 @@ export default function ContactPage() {
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-3 p-4 bg-red-50 text-red-700 rounded-xl"
+                      className="flex items-center"
+                      style={{
+                        gap: '12px',
+                        padding: '16px',
+                        background: '#FEF2F2',
+                        color: '#991B1B',
+                        borderRadius: '8px',
+                        marginBottom: '24px',
+                      }}
                     >
                       <AlertCircle size={20} />
                       <span>{t('form.error')}</span>
@@ -353,16 +488,36 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn btn-primary btn-lg w-full md:w-auto"
+                    className="inline-flex items-center gap-2"
+                    style={{
+                      background: '#0A0A0A',
+                      color: '#FFFFFF',
+                      fontWeight: 500,
+                      fontSize: '15px',
+                      padding: '14px 28px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                      opacity: isSubmitting ? 0.7 : 1,
+                    }}
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <div
+                          style={{
+                            width: '18px',
+                            height: '18px',
+                            border: '2px solid rgba(255,255,255,0.3)',
+                            borderTopColor: '#FFFFFF',
+                            borderRadius: '50%',
+                            animation: 'spin 1s linear infinite',
+                          }}
+                        />
                         {t('form.sending')}
                       </>
                     ) : (
                       <>
-                        <Send size={20} />
+                        <Send size={18} />
                         {t('form.submit')}
                       </>
                     )}
@@ -375,23 +530,23 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="section pt-0">
+      <section style={{ background: '#FFFFFF', padding: '80px 0' }}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl overflow-hidden shadow-xl"
+            className="overflow-hidden"
+            style={{ borderRadius: '16px', border: '1px solid #E5E5E5' }}
           >
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47567.42028252057!2d21.393792!3d41.9981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1354151e7b2f33f9%3A0x5c8d6a3c14f2c9c4!2sSkopje%2C%20North%20Macedonia!5e0!3m2!1sen!2sus!4v1705512000000!5m2!1sen!2sus"
               width="100%"
-              height="450"
+              height="400"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="grayscale hover:grayscale-0 transition-all duration-500"
             />
           </motion.div>
         </div>

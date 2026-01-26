@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { motion } from 'framer-motion';
-import { Check, HelpCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Check, ArrowRight, Sparkles, Plus, Minus } from 'lucide-react';
 
 export default function PricingPage() {
   const t = useTranslations('pricing');
-  const [isYearly, setIsYearly] = useState(false);
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(0);
 
   const plans = [
     {
@@ -36,7 +36,7 @@ export default function PricingPage() {
     },
     {
       q: 'Can I upgrade my plan later?',
-      a: 'Yes, you can upgrade your website at any time. We\'ll work with you to add new features and functionality.',
+      a: "Yes, you can upgrade your website at any time. We'll work with you to add new features and functionality.",
     },
     {
       q: 'Do you provide hosting?',
@@ -59,38 +59,62 @@ export default function PricingPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary-900 via-primary-950 to-neutral-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)',
-              backgroundSize: '50px 50px',
-            }}
-          />
-        </div>
-        <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-primary-500/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl" />
-
-        <div className="container relative z-10">
+      <section
+        style={{
+          background: '#FFFFFF',
+          paddingTop: '140px',
+          paddingBottom: '80px',
+        }}
+      >
+        <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
+            transition={{ duration: 0.5 }}
+            className="text-center"
+            style={{ maxWidth: '800px', margin: '0 auto' }}
           >
-            <span className="badge badge-dark mb-6">Pricing</span>
-            <h1 className="heading-1 text-white mb-6">{t('title')}</h1>
-            <p className="text-xl text-neutral-300 mb-8">{t('subtitle')}</p>
+            <span
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#673DE6',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                marginBottom: '16px',
+                display: 'block',
+              }}
+            >
+              Pricing
+            </span>
+            <h1
+              style={{
+                fontSize: 'clamp(36px, 5vw, 56px)',
+                fontWeight: 400,
+                color: '#0A0A0A',
+                lineHeight: 1.15,
+                marginBottom: '20px',
+              }}
+            >
+              {t('title')}
+            </h1>
+            <p
+              style={{
+                fontSize: '18px',
+                color: '#525252',
+                lineHeight: 1.7,
+              }}
+            >
+              {t('subtitle')}
+            </p>
           </motion.div>
         </div>
       </section>
 
       {/* Pricing Cards */}
-      <section className="section -mt-10 relative z-20">
+      <section style={{ background: '#FAFAFA', padding: '80px 0' }}>
         <div className="container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4" style={{ gap: '24px' }}>
             {plans.map((plan, index) => {
               const planData = {
                 name: t(`plans.${plan.key}.name`),
@@ -106,54 +130,113 @@ export default function PricingPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`relative ${plan.popular ? 'lg:-mt-4 lg:mb-4' : ''}`}
+                  className="relative"
                 >
                   {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                      <span className="bg-gradient-to-r from-primary-600 to-accent-500 text-white text-sm font-semibold px-4 py-1.5 rounded-full flex items-center gap-1.5">
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '-12px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        zIndex: 10,
+                      }}
+                    >
+                      <span
+                        className="flex items-center gap-1"
+                        style={{
+                          background: '#673DE6',
+                          color: '#FFFFFF',
+                          fontSize: '12px',
+                          fontWeight: 600,
+                          padding: '6px 16px',
+                          borderRadius: '100px',
+                        }}
+                      >
                         <Sparkles size={14} />
                         {t('popular')}
                       </span>
                     </div>
                   )}
                   <div
-                    className={`card h-full flex flex-col ${
-                      plan.popular
-                        ? 'border-2 border-primary-500 shadow-xl shadow-primary-500/20'
-                        : ''
-                    }`}
+                    style={{
+                      height: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      background: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: plan.popular ? '2px solid #673DE6' : '1px solid #E5E5E5',
+                      overflow: 'hidden',
+                    }}
                   >
-                    <div className="p-6 border-b border-neutral-200">
-                      <h3 className="text-xl font-bold text-neutral-900 mb-2">
+                    <div
+                      style={{
+                        padding: '32px',
+                        borderBottom: '1px solid #E5E5E5',
+                      }}
+                    >
+                      <h3
+                        style={{
+                          fontSize: '20px',
+                          fontWeight: 500,
+                          color: '#0A0A0A',
+                          marginBottom: '8px',
+                        }}
+                      >
                         {planData.name}
                       </h3>
-                      <p className="text-neutral-600 text-sm mb-4">
+                      <p
+                        style={{
+                          fontSize: '14px',
+                          color: '#525252',
+                          marginBottom: '20px',
+                        }}
+                      >
                         {planData.description}
                       </p>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-4xl font-bold text-neutral-900">
+                      <div className="flex items-baseline" style={{ gap: '4px' }}>
+                        <span
+                          style={{
+                            fontSize: '36px',
+                            fontWeight: 500,
+                            color: '#0A0A0A',
+                          }}
+                        >
                           {planData.price}
                         </span>
                         {planData.period && (
-                          <span className="text-neutral-500">
+                          <span style={{ color: '#737373', fontSize: '14px' }}>
                             /{planData.period}
                           </span>
                         )}
                       </div>
                     </div>
 
-                    <div className="p-6 flex-1">
-                      <p className="text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-4">
+                    <div style={{ padding: '32px', flex: 1 }}>
+                      <p
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: 600,
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.05em',
+                          color: '#737373',
+                          marginBottom: '16px',
+                        }}
+                      >
                         {t('features')}
                       </p>
-                      <ul className="space-y-3">
+                      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                         {planData.features.map((feature: string, i: number) => (
-                          <li key={i} className="flex items-start gap-3">
+                          <li
+                            key={i}
+                            className="flex items-start"
+                            style={{ gap: '12px', marginBottom: '12px' }}
+                          >
                             <Check
                               size={18}
-                              className="text-green-500 flex-shrink-0 mt-0.5"
+                              style={{ color: '#22C55E', flexShrink: 0, marginTop: '2px' }}
                             />
-                            <span className="text-neutral-700 text-sm">
+                            <span style={{ fontSize: '14px', color: '#404040' }}>
                               {feature}
                             </span>
                           </li>
@@ -161,16 +244,21 @@ export default function PricingPage() {
                       </ul>
                     </div>
 
-                    <div className="p-6 pt-0">
+                    <div style={{ padding: '0 32px 32px' }}>
                       <Link
                         href="/contact"
-                        className={`btn w-full ${
-                          plan.popular ? 'btn-primary' : 'btn-secondary'
-                        }`}
+                        className="w-full inline-flex items-center justify-center"
+                        style={{
+                          padding: '14px 28px',
+                          borderRadius: '8px',
+                          fontWeight: 500,
+                          fontSize: '14px',
+                          background: plan.popular ? '#0A0A0A' : 'transparent',
+                          color: plan.popular ? '#FFFFFF' : '#0A0A0A',
+                          border: plan.popular ? 'none' : '1px solid #E5E5E5',
+                        }}
                       >
-                        {plan.key === 'enterprise'
-                          ? t('contactUs')
-                          : t('getStarted')}
+                        {plan.key === 'enterprise' ? t('contactUs') : t('getStarted')}
                       </Link>
                     </div>
                   </div>
@@ -182,77 +270,190 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="section bg-neutral-50">
+      <section style={{ background: '#FFFFFF', padding: '100px 0' }}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-12"
+            className="text-center"
+            style={{ maxWidth: '600px', margin: '0 auto 64px' }}
           >
-            <span className="badge mb-4">FAQ</span>
-            <h2 className="heading-2 text-neutral-900 mb-4">
+            <span
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#673DE6',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                marginBottom: '16px',
+                display: 'block',
+              }}
+            >
+              FAQ
+            </span>
+            <h2
+              style={{
+                fontSize: 'clamp(28px, 4vw, 40px)',
+                fontWeight: 400,
+                color: '#0A0A0A',
+                lineHeight: 1.2,
+                marginBottom: '16px',
+              }}
+            >
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-neutral-600">
-              Have questions? We have answers. If you can&apos;t find what you&apos;re
-              looking for, contact us directly.
+            <p style={{ fontSize: '16px', color: '#525252', lineHeight: 1.7 }}>
+              Have questions? We have answers. If you can&apos;t find what you&apos;re looking for, contact us directly.
             </p>
           </motion.div>
 
-          <div className="max-w-3xl mx-auto">
-            <div className="grid gap-4">
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="card p-6"
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                style={{
+                  borderBottom: '1px solid #E5E5E5',
+                }}
+              >
+                <button
+                  onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                  className="w-full flex items-center justify-between text-left"
+                  style={{
+                    padding: '24px 0',
+                    cursor: 'pointer',
+                    background: 'transparent',
+                    border: 'none',
+                  }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-lg bg-primary-100 flex items-center justify-center flex-shrink-0">
-                      <HelpCircle size={18} className="text-primary-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-neutral-900 mb-2">
-                        {faq.q}
-                      </h3>
-                      <p className="text-neutral-600">{faq.a}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  <span
+                    style={{
+                      fontSize: '16px',
+                      fontWeight: 500,
+                      color: '#0A0A0A',
+                    }}
+                  >
+                    {faq.q}
+                  </span>
+                  <span style={{ color: '#0A0A0A', marginLeft: '16px' }}>
+                    {expandedFaq === index ? <Minus size={20} /> : <Plus size={20} />}
+                  </span>
+                </button>
+
+                <AnimatePresence>
+                  {expandedFaq === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      style={{ overflow: 'hidden' }}
+                    >
+                      <p
+                        style={{
+                          fontSize: '15px',
+                          color: '#525252',
+                          lineHeight: 1.7,
+                          paddingBottom: '24px',
+                        }}
+                      >
+                        {faq.a}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="section bg-gradient-to-br from-primary-600 to-primary-900 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl" />
-        </div>
-        <div className="container relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+      <section style={{ background: '#FAFAFA', padding: '100px 0' }}>
+        <div className="container">
+          <div
+            className="relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, #673DE6 0%, #4F28B3 100%)',
+              borderRadius: '24px',
+              padding: 'clamp(48px, 8vw, 80px)',
+            }}
           >
-            <h2 className="heading-2 text-white mb-4">
-              Not Sure Which Plan is Right for You?
-            </h2>
-            <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-              Let&apos;s discuss your project requirements and find the perfect solution
-              for your business.
-            </p>
-            <Link href="/contact" className="btn btn-white btn-lg">
-              Schedule a Free Call
-              <ArrowRight size={20} />
-            </Link>
-          </motion.div>
+            <div
+              className="absolute"
+              style={{
+                width: '400px',
+                height: '400px',
+                borderRadius: '50%',
+                background: 'rgba(255,255,255,0.08)',
+                top: '-200px',
+                right: '-100px',
+              }}
+            />
+            <div
+              className="absolute"
+              style={{
+                width: '200px',
+                height: '200px',
+                borderRadius: '50%',
+                background: 'rgba(255,255,255,0.05)',
+                bottom: '-50px',
+                left: '10%',
+              }}
+            />
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative z-10 text-center"
+              style={{ maxWidth: '600px', margin: '0 auto' }}
+            >
+              <h2
+                style={{
+                  fontSize: 'clamp(28px, 4vw, 40px)',
+                  fontWeight: 400,
+                  color: '#FFFFFF',
+                  lineHeight: 1.2,
+                  marginBottom: '16px',
+                }}
+              >
+                Not Sure Which Plan is Right?
+              </h2>
+              <p
+                style={{
+                  fontSize: '17px',
+                  color: 'rgba(255,255,255,0.8)',
+                  lineHeight: 1.6,
+                  marginBottom: '32px',
+                }}
+              >
+                Let&apos;s discuss your project requirements and find the perfect solution for your business.
+              </p>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 transition-all duration-300"
+                style={{
+                  background: '#FFC107',
+                  color: '#0A0A0A',
+                  fontWeight: 600,
+                  fontSize: '15px',
+                  padding: '16px 32px',
+                  borderRadius: '100px',
+                }}
+              >
+                Schedule a Free Call
+                <ArrowRight
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
     </>

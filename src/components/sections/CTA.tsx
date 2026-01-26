@@ -11,7 +11,7 @@ const CTA = () => {
   return (
     <section
       style={{
-        background: '#FAFAFA',
+        background: '#FFFFFF',
         padding: '100px 0',
       }}
     >

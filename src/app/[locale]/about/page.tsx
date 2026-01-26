@@ -5,11 +5,8 @@ import { Link } from '@/i18n/routing';
 import { motion } from 'framer-motion';
 import {
   Award,
-  Users,
-  Target,
-  Heart,
   Lightbulb,
-  Shield,
+  Heart,
   MessageSquare,
   ArrowRight,
   CheckCircle,
@@ -24,25 +21,21 @@ export default function AboutPage() {
       icon: Award,
       title: t('values.quality.title'),
       description: t('values.quality.description'),
-      color: 'bg-blue-500',
     },
     {
       icon: Lightbulb,
       title: t('values.innovation.title'),
       description: t('values.innovation.description'),
-      color: 'bg-purple-500',
     },
     {
       icon: Heart,
       title: t('values.support.title'),
       description: t('values.support.description'),
-      color: 'bg-red-500',
     },
     {
       icon: MessageSquare,
       title: t('values.transparency.title'),
       description: t('values.transparency.description'),
-      color: 'bg-green-500',
     },
   ];
 
@@ -92,86 +85,149 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary-900 via-primary-950 to-neutral-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)',
-              backgroundSize: '50px 50px',
-            }}
-          />
-        </div>
-        <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-primary-500/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl" />
-
-        <div className="container relative z-10">
+      <section
+        style={{
+          background: '#FFFFFF',
+          paddingTop: '140px',
+          paddingBottom: '80px',
+        }}
+      >
+        <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
+            transition={{ duration: 0.5 }}
+            className="text-center"
+            style={{ maxWidth: '800px', margin: '0 auto' }}
           >
-            <span className="badge badge-dark mb-6">{t('title')}</span>
-            <h1 className="heading-1 text-white mb-6">{t('title')}</h1>
-            <p className="text-xl text-neutral-300 mb-8">{t('subtitle')}</p>
+            <span
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#673DE6',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                marginBottom: '16px',
+                display: 'block',
+              }}
+            >
+              {t('title')}
+            </span>
+            <h1
+              style={{
+                fontSize: 'clamp(36px, 5vw, 56px)',
+                fontWeight: 400,
+                color: '#0A0A0A',
+                lineHeight: 1.15,
+                marginBottom: '20px',
+              }}
+            >
+              {t('title')}
+            </h1>
+            <p
+              style={{
+                fontSize: '18px',
+                color: '#525252',
+                lineHeight: 1.7,
+              }}
+            >
+              {t('subtitle')}
+            </p>
           </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="relative -mt-10 z-20">
+      <section style={{ background: '#FAFAFA', padding: '60px 0' }}>
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4"
-          >
+          <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: '24px' }}>
             {stats.map((stat, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="bg-white rounded-2xl shadow-xl p-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                style={{
+                  background: '#FFFFFF',
+                  borderRadius: '16px',
+                  padding: '32px',
+                  textAlign: 'center',
+                  border: '1px solid #E5E5E5',
+                }}
               >
-                <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">
+                <div
+                  style={{
+                    fontSize: '36px',
+                    fontWeight: 500,
+                    color: '#673DE6',
+                    marginBottom: '8px',
+                  }}
+                >
                   {stat.value}
                 </div>
-                <div className="text-neutral-600 text-sm">{stat.label}</div>
-              </div>
+                <div style={{ fontSize: '14px', color: '#525252' }}>{stat.label}</div>
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Story Section */}
-      <section className="section">
+      <section style={{ background: '#FFFFFF', padding: '100px 0' }}>
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 items-center" style={{ gap: '64px' }}>
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
             >
-              <span className="badge mb-4">{t('story.title')}</span>
-              <h2 className="heading-2 text-neutral-900 mb-6">
+              <span
+                style={{
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  color: '#673DE6',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  marginBottom: '16px',
+                  display: 'block',
+                }}
+              >
+                {t('story.title')}
+              </span>
+              <h2
+                style={{
+                  fontSize: 'clamp(28px, 4vw, 40px)',
+                  fontWeight: 400,
+                  color: '#0A0A0A',
+                  lineHeight: 1.2,
+                  marginBottom: '20px',
+                }}
+              >
                 {t('story.title')}
               </h2>
-              <p className="text-lg text-neutral-600 mb-6 leading-relaxed">
+              <p
+                style={{
+                  fontSize: '16px',
+                  color: '#525252',
+                  lineHeight: 1.7,
+                  marginBottom: '32px',
+                }}
+              >
                 {t('story.description')}
               </p>
 
-              <div className="space-y-4">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {[
                   'Over 500 websites created',
                   '300+ satisfied clients',
                   'Expert team of 15+ professionals',
                   'Serving clients across 10+ countries',
                 ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-green-500" />
-                    <span className="text-neutral-700">{item}</span>
+                  <div key={index} className="flex items-center" style={{ gap: '12px' }}>
+                    <CheckCircle size={20} style={{ color: '#22C55E' }} />
+                    <span style={{ color: '#404040', fontSize: '15px' }}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -181,10 +237,12 @@ export default function AboutPage() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
+              transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <div
+                className="relative overflow-hidden"
+                style={{ borderRadius: '16px' }}
+              >
                 <Image
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
                   alt="Our Team"
@@ -192,41 +250,24 @@ export default function AboutPage() {
                   height={600}
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent" />
               </div>
-              {/* Floating Element */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-4"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
-                    <Award size={24} className="text-primary-600" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-neutral-900">10+ Years</div>
-                    <div className="text-sm text-neutral-600">of Excellence</div>
-                  </div>
-                </div>
-              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="section bg-neutral-50">
+      {/* Mission & Values Section */}
+      <section style={{ background: '#FAFAFA', padding: '100px 0' }}>
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 items-center" style={{ gap: '64px' }}>
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
               className="order-2 lg:order-1"
             >
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2" style={{ gap: '16px' }}>
                 {values.map((value, index) => (
                   <motion.div
                     key={index}
@@ -234,17 +275,40 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="card p-6"
+                    style={{
+                      background: '#FFFFFF',
+                      borderRadius: '16px',
+                      padding: '24px',
+                      border: '1px solid #E5E5E5',
+                    }}
                   >
                     <div
-                      className={`w-12 h-12 rounded-xl ${value.color} flex items-center justify-center mb-4`}
+                      style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '12px',
+                        background: '#F5F5F5',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginBottom: '16px',
+                      }}
                     >
-                      <value.icon size={24} className="text-white" />
+                      <value.icon size={24} style={{ color: '#673DE6' }} />
                     </div>
-                    <h4 className="font-semibold text-neutral-900 mb-2">
+                    <h4
+                      style={{
+                        fontWeight: 500,
+                        color: '#0A0A0A',
+                        marginBottom: '8px',
+                        fontSize: '16px',
+                      }}
+                    >
                       {value.title}
                     </h4>
-                    <p className="text-sm text-neutral-600">{value.description}</p>
+                    <p style={{ fontSize: '14px', color: '#525252', lineHeight: 1.6 }}>
+                      {value.description}
+                    </p>
                   </motion.div>
                 ))}
               </div>
@@ -254,21 +318,55 @@ export default function AboutPage() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="order-1 lg:order-2"
             >
-              <span className="badge mb-4">{t('mission.title')}</span>
-              <h2 className="heading-2 text-neutral-900 mb-6">
+              <span
+                style={{
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  color: '#673DE6',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  marginBottom: '16px',
+                  display: 'block',
+                }}
+              >
+                {t('mission.title')}
+              </span>
+              <h2
+                style={{
+                  fontSize: 'clamp(28px, 4vw, 40px)',
+                  fontWeight: 400,
+                  color: '#0A0A0A',
+                  lineHeight: 1.2,
+                  marginBottom: '20px',
+                }}
+              >
                 {t('mission.title')}
               </h2>
-              <p className="text-lg text-neutral-600 mb-6 leading-relaxed">
+              <p
+                style={{
+                  fontSize: '16px',
+                  color: '#525252',
+                  lineHeight: 1.7,
+                  marginBottom: '24px',
+                }}
+              >
                 {t('mission.description')}
               </p>
 
-              <h3 className="heading-4 text-neutral-900 mb-4">
+              <h3
+                style={{
+                  fontSize: '18px',
+                  fontWeight: 500,
+                  color: '#0A0A0A',
+                  marginBottom: '12px',
+                }}
+              >
                 {t('values.title')}
               </h3>
-              <p className="text-neutral-600">
+              <p style={{ fontSize: '15px', color: '#525252', lineHeight: 1.7 }}>
                 We believe in delivering excellence through quality work,
                 continuous innovation, dedicated support, and transparent
                 communication with all our clients.
@@ -279,87 +377,125 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline Section */}
-      <section className="section">
+      <section style={{ background: '#FFFFFF', padding: '100px 0' }}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center"
+            style={{ maxWidth: '600px', margin: '0 auto 64px' }}
           >
-            <span className="badge mb-4">Our Journey</span>
-            <h2 className="heading-2 text-neutral-900 mb-4">
+            <span
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#673DE6',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                marginBottom: '16px',
+                display: 'block',
+              }}
+            >
+              Our Journey
+            </span>
+            <h2
+              style={{
+                fontSize: 'clamp(28px, 4vw, 40px)',
+                fontWeight: 400,
+                color: '#0A0A0A',
+                lineHeight: 1.2,
+                marginBottom: '16px',
+              }}
+            >
               A Decade of Growth
             </h2>
-            <p className="text-lg text-neutral-600">
+            <p style={{ fontSize: '16px', color: '#525252', lineHeight: 1.7 }}>
               From a small freelance team to a leading web development agency
             </p>
           </motion.div>
 
-          <div className="relative max-w-4xl mx-auto">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary-500 to-accent-500 rounded-full hidden md:block" />
-
-            <div className="space-y-12">
-              {milestones.map((milestone, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`relative flex items-center gap-8 ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: '24px' }}>
+            {milestones.map((milestone, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                style={{
+                  background: '#FAFAFA',
+                  borderRadius: '16px',
+                  padding: '32px',
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: '32px',
+                    fontWeight: 500,
+                    color: '#673DE6',
+                    marginBottom: '12px',
+                  }}
                 >
-                  <div className={`flex-1 ${index % 2 === 0 ? 'text-right' : 'text-left'} hidden md:block`}>
-                    <div className="card p-6 inline-block">
-                      <div className="text-2xl font-bold text-primary-600 mb-2">
-                        {milestone.year}
-                      </div>
-                      <h4 className="font-semibold text-neutral-900 mb-1">
-                        {milestone.title}
-                      </h4>
-                      <p className="text-neutral-600 text-sm">{milestone.desc}</p>
-                    </div>
-                  </div>
-
-                  <div className="w-4 h-4 rounded-full bg-primary-600 ring-4 ring-primary-100 z-10 hidden md:block" />
-
-                  <div className="flex-1 hidden md:block" />
-
-                  {/* Mobile View */}
-                  <div className="md:hidden card p-6 w-full">
-                    <div className="text-2xl font-bold text-primary-600 mb-2">
-                      {milestone.year}
-                    </div>
-                    <h4 className="font-semibold text-neutral-900 mb-1">
-                      {milestone.title}
-                    </h4>
-                    <p className="text-neutral-600 text-sm">{milestone.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  {milestone.year}
+                </div>
+                <h4
+                  style={{
+                    fontWeight: 500,
+                    color: '#0A0A0A',
+                    marginBottom: '8px',
+                    fontSize: '18px',
+                  }}
+                >
+                  {milestone.title}
+                </h4>
+                <p style={{ fontSize: '14px', color: '#525252' }}>{milestone.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="section bg-neutral-50">
+      <section style={{ background: '#FAFAFA', padding: '100px 0' }}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center"
+            style={{ maxWidth: '600px', margin: '0 auto 64px' }}
           >
-            <span className="badge mb-4">{t('team.title')}</span>
-            <h2 className="heading-2 text-neutral-900 mb-4">{t('team.title')}</h2>
-            <p className="text-lg text-neutral-600">{t('team.subtitle')}</p>
+            <span
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#673DE6',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                marginBottom: '16px',
+                display: 'block',
+              }}
+            >
+              {t('team.title')}
+            </span>
+            <h2
+              style={{
+                fontSize: 'clamp(28px, 4vw, 40px)',
+                fontWeight: 400,
+                color: '#0A0A0A',
+                lineHeight: 1.2,
+                marginBottom: '16px',
+              }}
+            >
+              {t('team.title')}
+            </h2>
+            <p style={{ fontSize: '16px', color: '#525252', lineHeight: 1.7 }}>
+              {t('team.subtitle')}
+            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4" style={{ gap: '24px' }}>
             {team.map((member, index) => (
               <motion.div
                 key={index}
@@ -369,24 +505,44 @@ export default function AboutPage() {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <div className="card overflow-hidden">
-                  <div className="relative aspect-square overflow-hidden">
+                <div
+                  style={{
+                    background: '#FFFFFF',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    border: '1px solid #E5E5E5',
+                  }}
+                >
+                  <div className="relative" style={{ aspectRatio: '1/1' }}>
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                  <div className="p-6 text-center">
-                    <h4 className="font-semibold text-neutral-900 mb-1">
+                  <div style={{ padding: '24px', textAlign: 'center' }}>
+                    <h4
+                      style={{
+                        fontWeight: 500,
+                        color: '#0A0A0A',
+                        marginBottom: '4px',
+                        fontSize: '16px',
+                      }}
+                    >
                       {member.name}
                     </h4>
-                    <p className="text-primary-600 text-sm font-medium mb-2">
+                    <p
+                      style={{
+                        color: '#673DE6',
+                        fontSize: '14px',
+                        fontWeight: 500,
+                        marginBottom: '8px',
+                      }}
+                    >
                       {member.role}
                     </p>
-                    <p className="text-neutral-600 text-sm">{member.bio}</p>
+                    <p style={{ fontSize: '13px', color: '#525252' }}>{member.bio}</p>
                   </div>
                 </div>
               </motion.div>
@@ -396,28 +552,87 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="section bg-gradient-to-br from-primary-600 to-primary-900 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl" />
-        </div>
-        <div className="container relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+      <section style={{ background: '#FAFAFA', padding: '100px 0' }}>
+        <div className="container">
+          <div
+            className="relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, #673DE6 0%, #4F28B3 100%)',
+              borderRadius: '24px',
+              padding: 'clamp(48px, 8vw, 80px)',
+            }}
           >
-            <h2 className="heading-2 text-white mb-4">
-              Ready to Work With Us?
-            </h2>
-            <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-              Let&apos;s discuss how we can help bring your vision to life.
-            </p>
-            <Link href="/contact" className="btn btn-white btn-lg">
-              Contact Our Team
-              <ArrowRight size={20} />
-            </Link>
-          </motion.div>
+            <div
+              className="absolute"
+              style={{
+                width: '400px',
+                height: '400px',
+                borderRadius: '50%',
+                background: 'rgba(255,255,255,0.08)',
+                top: '-200px',
+                right: '-100px',
+              }}
+            />
+            <div
+              className="absolute"
+              style={{
+                width: '200px',
+                height: '200px',
+                borderRadius: '50%',
+                background: 'rgba(255,255,255,0.05)',
+                bottom: '-50px',
+                left: '10%',
+              }}
+            />
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative z-10 text-center"
+              style={{ maxWidth: '600px', margin: '0 auto' }}
+            >
+              <h2
+                style={{
+                  fontSize: 'clamp(28px, 4vw, 40px)',
+                  fontWeight: 400,
+                  color: '#FFFFFF',
+                  lineHeight: 1.2,
+                  marginBottom: '16px',
+                }}
+              >
+                Ready to Work With Us?
+              </h2>
+              <p
+                style={{
+                  fontSize: '17px',
+                  color: 'rgba(255,255,255,0.8)',
+                  lineHeight: 1.6,
+                  marginBottom: '32px',
+                }}
+              >
+                Let&apos;s discuss how we can help bring your vision to life.
+              </p>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 transition-all duration-300"
+                style={{
+                  background: '#FFC107',
+                  color: '#0A0A0A',
+                  fontWeight: 600,
+                  fontSize: '15px',
+                  padding: '16px 32px',
+                  borderRadius: '100px',
+                }}
+              >
+                Contact Our Team
+                <ArrowRight
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
     </>
