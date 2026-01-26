@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
+import Image from 'next/image';
 
 const Hero = () => {
   const t = useTranslations('hero');
@@ -97,161 +98,26 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Visual Column */}
+          {/* Visual Column - Hero Image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="relative"
           >
-            {/* Main visual card */}
             <div
               className="relative rounded-2xl overflow-hidden"
               style={{
-                background: 'linear-gradient(135deg, #673DE6 0%, #2F1C6A 100%)',
-                padding: '40px',
                 minHeight: '420px',
               }}
             >
-              {/* Decorative elements */}
-              <div
-                className="absolute"
-                style={{
-                  width: '200px',
-                  height: '200px',
-                  borderRadius: '50%',
-                  background: 'rgba(255,255,255,0.1)',
-                  top: '-50px',
-                  right: '-50px',
-                }}
+              <Image
+                src="/hero-section-image.avif"
+                alt="Web Development"
+                fill
+                className="object-cover rounded-2xl"
+                priority
               />
-              <div
-                className="absolute"
-                style={{
-                  width: '150px',
-                  height: '150px',
-                  borderRadius: '50%',
-                  background: 'rgba(255,255,255,0.05)',
-                  bottom: '-30px',
-                  left: '-30px',
-                }}
-              />
-
-              {/* Browser mockup */}
-              <div
-                className="relative rounded-xl overflow-hidden"
-                style={{
-                  background: '#FFFFFF',
-                  boxShadow: '0 25px 50px rgba(0,0,0,0.25)',
-                }}
-              >
-                {/* Browser header */}
-                <div
-                  className="flex items-center px-4"
-                  style={{
-                    height: '40px',
-                    background: '#F5F5F5',
-                    borderBottom: '1px solid #E5E5E5',
-                  }}
-                >
-                  <div className="flex items-center" style={{ gap: '6px' }}>
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#EF4444' }} />
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#F59E0B' }} />
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#22C55E' }} />
-                  </div>
-                  <div
-                    className="flex-1 mx-4 rounded text-center"
-                    style={{
-                      padding: '4px 12px',
-                      background: '#FFFFFF',
-                      border: '1px solid #E5E5E5',
-                      color: '#737373',
-                      fontSize: '12px',
-                    }}
-                  >
-                    yourwebsite.com
-                  </div>
-                </div>
-
-                {/* Browser content mockup */}
-                <div style={{ padding: '20px' }}>
-                  {/* Mock nav */}
-                  <div className="flex items-center justify-between" style={{ marginBottom: '20px' }}>
-                    <div style={{ width: '80px', height: '20px', background: '#E5E5E5', borderRadius: '4px' }} />
-                    <div className="flex" style={{ gap: '12px' }}>
-                      <div style={{ width: '50px', height: '10px', background: '#E5E5E5', borderRadius: '4px' }} />
-                      <div style={{ width: '50px', height: '10px', background: '#E5E5E5', borderRadius: '4px' }} />
-                      <div style={{ width: '50px', height: '10px', background: '#E5E5E5', borderRadius: '4px' }} />
-                    </div>
-                  </div>
-
-                  {/* Mock hero area */}
-                  <div
-                    className="rounded-lg"
-                    style={{
-                      height: '100px',
-                      background: 'linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)',
-                      marginBottom: '16px',
-                    }}
-                  />
-
-                  {/* Mock cards */}
-                  <div className="grid grid-cols-3" style={{ gap: '12px' }}>
-                    {[1, 2, 3].map((i) => (
-                      <div
-                        key={i}
-                        className="rounded-lg"
-                        style={{
-                          height: '60px',
-                          background: '#F5F5F5',
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating elements */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute flex items-center gap-2 rounded-lg"
-                style={{
-                  top: '20px',
-                  right: '20px',
-                  padding: '10px 14px',
-                  background: '#FFFFFF',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                }}
-              >
-                <div
-                  style={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    background: '#22C55E',
-                  }}
-                />
-                <span style={{ fontSize: '13px', fontWeight: 600, color: '#171717' }}>
-                  Online
-                </span>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute flex items-center gap-2 rounded-lg"
-                style={{
-                  bottom: '30px',
-                  left: '20px',
-                  padding: '10px 14px',
-                  background: '#FFFFFF',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                }}
-              >
-                <span style={{ fontSize: '20px' }}>+150%</span>
-                <span style={{ fontSize: '12px', color: '#22C55E', fontWeight: 500 }}>Growth</span>
-              </motion.div>
             </div>
           </motion.div>
         </div>
