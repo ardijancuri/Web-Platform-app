@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, ArrowRight, X } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
 export default function PortfolioPage() {
   const t = useTranslations('portfolio');
   const [activeCategory, setActiveCategory] = useState('all');
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   const categories = [
     { id: 'all', label: t('categories.all') },
@@ -26,9 +26,7 @@ export default function PortfolioPage() {
       category: 'ecommerce',
       image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
       description: 'Modern online fashion store with seamless checkout experience',
-      client: 'Fashion Boutique MK',
-      technologies: ['Next.js', 'Stripe', 'MongoDB'],
-      results: 'Increased online sales by 200%',
+      size: 'large',
     },
     {
       id: 2,
@@ -36,9 +34,7 @@ export default function PortfolioPage() {
       category: 'websites',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
       description: 'Clean and modern landing page for a SaaS company',
-      client: 'TechStart Solutions',
-      technologies: ['React', 'Tailwind CSS', 'Framer Motion'],
-      results: 'Reduced bounce rate by 45%',
+      size: 'small',
     },
     {
       id: 3,
@@ -46,9 +42,7 @@ export default function PortfolioPage() {
       category: 'webapps',
       image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop',
       description: 'Full-featured reservation management system',
-      client: 'Restaurant Chain',
-      technologies: ['Node.js', 'PostgreSQL', 'React'],
-      results: 'Streamlined operations by 60%',
+      size: 'small',
     },
     {
       id: 4,
@@ -56,9 +50,7 @@ export default function PortfolioPage() {
       category: 'websites',
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
       description: 'Property listing and search platform with virtual tours',
-      client: 'Property Solutions',
-      technologies: ['Next.js', 'Mapbox', 'Prisma'],
-      results: 'Increased property inquiries by 150%',
+      size: 'medium',
     },
     {
       id: 5,
@@ -66,9 +58,7 @@ export default function PortfolioPage() {
       category: 'ecommerce',
       image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&h=600&fit=crop',
       description: 'Full-featured electronics e-commerce with comparison tools',
-      client: 'TechMart',
-      technologies: ['WooCommerce', 'Custom Plugins', 'AWS'],
-      results: 'Grew customer base by 300%',
+      size: 'medium',
     },
     {
       id: 6,
@@ -76,9 +66,7 @@ export default function PortfolioPage() {
       category: 'webapps',
       image: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&h=600&fit=crop',
       description: 'Team collaboration and task management application',
-      client: 'Enterprise Corp',
-      technologies: ['React', 'GraphQL', 'PostgreSQL'],
-      results: 'Improved team productivity by 40%',
+      size: 'large',
     },
     {
       id: 7,
@@ -86,9 +74,7 @@ export default function PortfolioPage() {
       category: 'webapps',
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop',
       description: 'Patient management and appointment scheduling system',
-      client: 'MedCare Clinic',
-      technologies: ['Next.js', 'HIPAA Compliant', 'MongoDB'],
-      results: 'Reduced wait times by 50%',
+      size: 'small',
     },
     {
       id: 8,
@@ -96,9 +82,7 @@ export default function PortfolioPage() {
       category: 'websites',
       image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&h=600&fit=crop',
       description: 'Beautiful travel booking website with package deals',
-      client: 'Adventure Tours',
-      technologies: ['WordPress', 'Custom Theme', 'Booking APIs'],
-      results: 'Doubled online bookings',
+      size: 'small',
     },
     {
       id: 9,
@@ -106,9 +90,7 @@ export default function PortfolioPage() {
       category: 'ecommerce',
       image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop',
       description: 'E-commerce store for gym and fitness equipment',
-      client: 'FitGear Pro',
-      technologies: ['Shopify', 'Custom App', 'Analytics'],
-      results: 'Increased average order value by 35%',
+      size: 'medium',
     },
   ];
 
@@ -117,7 +99,18 @@ export default function PortfolioPage() {
       ? projects
       : projects.filter((p) => p.category === activeCategory);
 
-  const selectedProjectData = projects.find((p) => p.id === selectedProject);
+  // Get grid class based on size
+  const getGridClass = (size: string, index: number) => {
+    if (size === 'large') return 'md:col-span-2 md:row-span-2';
+    if (size === 'medium') return 'md:col-span-2';
+    return '';
+  };
+
+  const getHeight = (size: string) => {
+    if (size === 'large') return '500px';
+    if (size === 'medium') return '300px';
+    return '280px';
+  };
 
   return (
     <>
@@ -126,7 +119,7 @@ export default function PortfolioPage() {
         style={{
           background: '#FFFFFF',
           paddingTop: '140px',
-          paddingBottom: '80px',
+          paddingBottom: '60px',
         }}
       >
         <div className="container">
@@ -171,33 +164,28 @@ export default function PortfolioPage() {
               {t('subtitle')}
             </p>
           </motion.div>
-        </div>
-      </section>
 
-      {/* Portfolio Section */}
-      <section style={{ background: '#FAFAFA', padding: '80px 0' }}>
-        <div className="container">
           {/* Filter Tabs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex flex-wrap justify-center"
-            style={{ gap: '8px', marginBottom: '48px' }}
+            style={{ gap: '8px', marginTop: '48px' }}
           >
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
                 style={{
-                  padding: '12px 24px',
+                  padding: '10px 20px',
                   borderRadius: '100px',
                   fontWeight: 500,
                   fontSize: '14px',
                   border: 'none',
                   cursor: 'pointer',
                   transition: 'all 0.2s',
-                  background: activeCategory === category.id ? '#0A0A0A' : '#FFFFFF',
+                  background: activeCategory === category.id ? '#0A0A0A' : 'transparent',
                   color: activeCategory === category.id ? '#FFFFFF' : '#525252',
                 }}
               >
@@ -205,264 +193,135 @@ export default function PortfolioPage() {
               </button>
             ))}
           </motion.div>
+        </div>
+      </section>
 
-          {/* Projects Grid */}
-          <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: '24px' }}>
+      {/* Bento Grid Portfolio */}
+      <section style={{ background: '#FFFFFF', paddingBottom: '100px' }}>
+        <div className="container">
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-4"
+            style={{ gap: '16px' }}
+          >
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project) => (
+              {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  className="group"
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => setSelectedProject(project.id)}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className={getGridClass(project.size, index)}
+                  onMouseEnter={() => setHoveredProject(project.id)}
+                  onMouseLeave={() => setHoveredProject(null)}
                 >
-                  <div
+                  <Link
+                    href="/contact"
+                    className="relative block w-full h-full overflow-hidden group"
                     style={{
-                      background: '#FFFFFF',
-                      borderRadius: '16px',
-                      overflow: 'hidden',
-                      border: '1px solid #E5E5E5',
+                      borderRadius: '20px',
+                      minHeight: getHeight(project.size),
+                      background: '#0A0A0A',
                     }}
                   >
-                    <div className="relative" style={{ aspectRatio: '4/3' }}>
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div
-                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        style={{ background: 'rgba(0,0,0,0.4)' }}
-                      >
-                        <div
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-all duration-700"
+                      style={{
+                        opacity: hoveredProject === project.id ? 0.6 : 0.85,
+                        transform: hoveredProject === project.id ? 'scale(1.05)' : 'scale(1)',
+                      }}
+                    />
+
+                    {/* Gradient Overlay */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)',
+                      }}
+                    />
+
+                    {/* Content */}
+                    <div
+                      className="absolute inset-0 flex flex-col justify-between"
+                      style={{ padding: '24px', zIndex: 2 }}
+                    >
+                      {/* Top Row */}
+                      <div className="flex justify-between items-start">
+                        <span
                           style={{
-                            width: '48px',
-                            height: '48px',
-                            borderRadius: '50%',
-                            background: '#FFFFFF',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
+                            padding: '8px 16px',
+                            background: 'rgba(255,255,255,0.15)',
+                            backdropFilter: 'blur(10px)',
+                            borderRadius: '100px',
+                            color: '#FFFFFF',
+                            fontSize: '12px',
+                            fontWeight: 500,
+                            letterSpacing: '0.02em',
                           }}
                         >
-                          <ExternalLink size={20} style={{ color: '#673DE6' }} />
-                        </div>
+                          {categories.find((c) => c.id === project.category)?.label}
+                        </span>
+                        <span
+                          className="flex items-center justify-center transition-all duration-300"
+                          style={{
+                            width: '44px',
+                            height: '44px',
+                            borderRadius: '50%',
+                            background: hoveredProject === project.id ? '#FFFFFF' : 'rgba(255,255,255,0.15)',
+                            backdropFilter: 'blur(10px)',
+                          }}
+                        >
+                          <ArrowUpRight
+                            size={20}
+                            style={{
+                              color: hoveredProject === project.id ? '#0A0A0A' : '#FFFFFF',
+                              transition: 'all 0.3s',
+                              transform: hoveredProject === project.id ? 'translate(2px, -2px)' : 'none',
+                            }}
+                          />
+                        </span>
+                      </div>
+
+                      {/* Bottom Content */}
+                      <div>
+                        <h3
+                          className="transition-transform duration-300"
+                          style={{
+                            fontSize: project.size === 'large' ? '28px' : '20px',
+                            fontWeight: 500,
+                            color: '#FFFFFF',
+                            marginBottom: '8px',
+                            transform: hoveredProject === project.id ? 'translateY(-4px)' : 'none',
+                          }}
+                        >
+                          {project.title}
+                        </h3>
+                        <p
+                          className="transition-all duration-300"
+                          style={{
+                            fontSize: '14px',
+                            color: 'rgba(255,255,255,0.7)',
+                            maxWidth: project.size === 'large' ? '400px' : '300px',
+                            opacity: hoveredProject === project.id ? 1 : 0.8,
+                            transform: hoveredProject === project.id ? 'translateY(-4px)' : 'none',
+                          }}
+                        >
+                          {project.description}
+                        </p>
                       </div>
                     </div>
-
-                    <div style={{ padding: '24px' }}>
-                      <span
-                        style={{
-                          fontSize: '12px',
-                          fontWeight: 600,
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.05em',
-                          color: '#673DE6',
-                        }}
-                      >
-                        {categories.find((c) => c.id === project.category)?.label}
-                      </span>
-                      <h3
-                        style={{
-                          fontSize: '18px',
-                          fontWeight: 500,
-                          color: '#0A0A0A',
-                          marginTop: '8px',
-                          marginBottom: '8px',
-                        }}
-                      >
-                        {project.title}
-                      </h3>
-                      <p style={{ fontSize: '14px', color: '#525252' }}>
-                        {project.description}
-                      </p>
-                    </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
         </div>
       </section>
-
-      {/* Project Modal */}
-      <AnimatePresence>
-        {selectedProject && selectedProjectData && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center"
-            style={{ padding: '16px', background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)' }}
-            onClick={() => setSelectedProject(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                background: '#FFFFFF',
-                borderRadius: '16px',
-                maxWidth: '800px',
-                width: '100%',
-                maxHeight: '90vh',
-                overflow: 'auto',
-              }}
-            >
-              <div className="relative" style={{ aspectRatio: '16/9' }}>
-                <Image
-                  src={selectedProjectData.image}
-                  alt={selectedProjectData.title}
-                  fill
-                  className="object-cover"
-                />
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  style={{
-                    position: 'absolute',
-                    top: '16px',
-                    right: '16px',
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    background: '#FFFFFF',
-                    border: 'none',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <X size={20} style={{ color: '#0A0A0A' }} />
-                </button>
-              </div>
-
-              <div style={{ padding: '32px' }}>
-                <span
-                  style={{
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                    color: '#673DE6',
-                    display: 'inline-block',
-                    padding: '6px 12px',
-                    background: '#F5F3FF',
-                    borderRadius: '100px',
-                    marginBottom: '16px',
-                  }}
-                >
-                  {categories.find((c) => c.id === selectedProjectData.category)?.label}
-                </span>
-                <h2
-                  style={{
-                    fontSize: '28px',
-                    fontWeight: 400,
-                    color: '#0A0A0A',
-                    marginBottom: '16px',
-                  }}
-                >
-                  {selectedProjectData.title}
-                </h2>
-                <p style={{ fontSize: '16px', color: '#525252', marginBottom: '32px' }}>
-                  {selectedProjectData.description}
-                </p>
-
-                <div className="grid md:grid-cols-3" style={{ gap: '24px', marginBottom: '32px' }}>
-                  <div>
-                    <h4
-                      style={{
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
-                        color: '#737373',
-                        marginBottom: '8px',
-                      }}
-                    >
-                      Client
-                    </h4>
-                    <p style={{ color: '#0A0A0A', fontWeight: 500 }}>
-                      {selectedProjectData.client}
-                    </p>
-                  </div>
-                  <div>
-                    <h4
-                      style={{
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
-                        color: '#737373',
-                        marginBottom: '8px',
-                      }}
-                    >
-                      Technologies
-                    </h4>
-                    <div className="flex flex-wrap" style={{ gap: '8px' }}>
-                      {selectedProjectData.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          style={{
-                            padding: '4px 10px',
-                            background: '#F5F5F5',
-                            borderRadius: '6px',
-                            fontSize: '13px',
-                            color: '#404040',
-                          }}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h4
-                      style={{
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
-                        color: '#737373',
-                        marginBottom: '8px',
-                      }}
-                    >
-                      Results
-                    </h4>
-                    <p style={{ color: '#22C55E', fontWeight: 500 }}>
-                      {selectedProjectData.results}
-                    </p>
-                  </div>
-                </div>
-
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2"
-                  style={{
-                    background: '#0A0A0A',
-                    color: '#FFFFFF',
-                    fontWeight: 500,
-                    fontSize: '14px',
-                    padding: '14px 28px',
-                    borderRadius: '8px',
-                  }}
-                  onClick={() => setSelectedProject(null)}
-                >
-                  Start a Similar Project
-                  <ArrowRight size={18} />
-                </Link>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* CTA */}
       <section style={{ background: '#FAFAFA', padding: '100px 0' }}>
