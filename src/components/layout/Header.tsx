@@ -158,11 +158,8 @@ const Header = () => {
                     >
                       <item.icon size={22} style={{ color: '#673DE6' }} />
                     </div>
-                    <div>
-                      <div style={{ fontSize: '15px', fontWeight: 600, color: '#1F2937', marginBottom: '2px' }}>
-                        {item.label}
-                      </div>
-                      <div style={{ fontSize: '13px', color: '#6B7280', lineHeight: 1.4 }}>{item.desc}</div>
+                    <div style={{ fontSize: '15px', fontWeight: 400, color: '#1F2937' }}>
+                      {item.label}
                     </div>
                   </Link>
                 ))}
@@ -210,7 +207,7 @@ const Header = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-white ${
         isScrolled ? 'shadow-sm' : ''
       }`}
-      style={{ borderBottom: activeDropdown ? 'none' : '1px solid #EBEBEB' }}
+      style={{ borderBottom: '1px solid #EBEBEB' }}
     >
       <nav
         className="flex items-center justify-between w-full"
@@ -509,20 +506,8 @@ const Header = () => {
                                   >
                                     <item.icon size={20} style={{ color: '#673DE6' }} />
                                   </div>
-                                  <div className="flex-1">
-                                    <div
-                                      style={{
-                                        fontSize: '15px',
-                                        fontWeight: 500,
-                                        color: '#1F2937',
-                                        marginBottom: '2px',
-                                      }}
-                                    >
-                                      {item.label}
-                                    </div>
-                                    <div style={{ fontSize: '13px', color: '#6B7280' }}>
-                                      {item.desc}
-                                    </div>
+                                  <div className="flex-1" style={{ fontSize: '15px', fontWeight: 400, color: '#1F2937' }}>
+                                    {item.label}
                                   </div>
                                   <ChevronRight size={18} style={{ color: '#D1D5DB' }} />
                                 </Link>
