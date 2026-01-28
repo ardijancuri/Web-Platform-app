@@ -16,7 +16,7 @@ const Services = () => {
       id: 'web-design',
       title: t('webDesign.title'),
       description: t('webDesign.description'),
-      image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop',
+      image: '/web-design.jpg',
     },
     {
       id: 'ecommerce',
