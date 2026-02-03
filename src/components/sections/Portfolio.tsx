@@ -14,38 +14,91 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-Commerce Fashion Store',
-      category: 'E-Commerce',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
+      title: 'Lesnamax',
+      category: 'Website',
+      image: '/work/lesnamax.avif',
       link: '/portfolio',
+      height: 580,
     },
     {
       id: 2,
-      title: 'Tech Startup Landing',
+      title: 'Tiamo',
       category: 'Website',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+      image: '/work/tiamo.avif',
       link: '/portfolio',
+      height: 320,
     },
     {
       id: 3,
-      title: 'Restaurant Booking App',
-      category: 'Web App',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop',
+      title: 'Premium Park',
+      category: 'Website',
+      image: '/work/premium-park.avif',
       link: '/portfolio',
+      height: 520,
     },
     {
       id: 4,
-      title: 'Real Estate Platform',
-      category: 'Website',
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
+      title: 'MonFrere',
+      category: 'E-Commerce',
+      image: '/work/monfrere.avif',
       link: '/portfolio',
+      height: 340,
     },
     {
       id: 5,
-      title: 'Project Management Tool',
-      category: 'Web App',
-      image: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&h=600&fit=crop',
+      title: 'Cioccolatitaliani',
+      category: 'Website',
+      image: '/work/cioccolatitaliani.avif',
       link: '/portfolio',
+      height: 600,
+    },
+    {
+      id: 6,
+      title: 'Marah',
+      category: 'Website',
+      image: '/work/marah.avif',
+      link: '/portfolio',
+      height: 360,
+    },
+    {
+      id: 7,
+      title: 'Best Mobile',
+      category: 'E-Commerce',
+      image: '/work/best-mobile.avif',
+      link: '/portfolio',
+      height: 550,
+    },
+    {
+      id: 8,
+      title: 'Tonus',
+      category: 'Website',
+      image: '/work/tonus.avif',
+      link: '/portfolio',
+      height: 320,
+    },
+    {
+      id: 9,
+      title: 'Burdemplastik',
+      category: 'Website',
+      image: '/work/burdemplastik.avif',
+      link: '/portfolio',
+      height: 480,
+    },
+    {
+      id: 10,
+      title: 'Pevalit',
+      category: 'Website',
+      image: '/work/pevalit.avif',
+      link: '/portfolio',
+      height: 300,
+    },
+    {
+      id: 11,
+      title: 'Tesorouno',
+      category: 'E-Commerce',
+      image: '/work/tesorouno.avif',
+      link: '/portfolio',
+      height: 540,
     },
   ];
 
@@ -120,111 +173,39 @@ const Portfolio = () => {
           </motion.div>
         </div>
 
-        {/* Bento Grid Layout */}
+        {/* Pinterest-style Masonry Layout */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: '20px' }}
+          style={{
+            columnCount: 3,
+            columnGap: '20px',
+          }}
+          className="masonry-grid"
         >
-          {/* Large Featured Project */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="md:col-span-2 lg:row-span-2"
-            onMouseEnter={() => setHoveredProject(1)}
-            onMouseLeave={() => setHoveredProject(null)}
-          >
-            <Link
-              href={projects[0].link}
-              className="relative w-full h-full block overflow-hidden group"
+          <style jsx>{`
+            @media (max-width: 1024px) {
+              .masonry-grid {
+                column-count: 2 !important;
+              }
+            }
+            @media (max-width: 640px) {
+              .masonry-grid {
+                column-count: 1 !important;
+              }
+            }
+          `}</style>
+
+          {/* Project Cards */}
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 * index }}
               style={{
-                borderRadius: '16px',
-                minHeight: '520px',
-                background: '#0A0A0A',
+                breakInside: 'avoid',
+                marginBottom: '20px',
               }}
-            >
-              <Image
-                src={projects[0].image}
-                alt={projects[0].title}
-                fill
-                className="object-cover transition-all duration-500"
-                style={{
-                  opacity: hoveredProject === 1 ? 0.7 : 0.5,
-                  transform: hoveredProject === 1 ? 'scale(1.03)' : 'scale(1)',
-                }}
-              />
-              <div
-                className="absolute inset-0 flex flex-col justify-between"
-                style={{ padding: '28px', zIndex: 2 }}
-              >
-                <div className="flex justify-between items-start">
-                  <span
-                    style={{
-                      padding: '8px 16px',
-                      background: 'rgba(255,255,255,0.2)',
-                      backdropFilter: 'blur(8px)',
-                      borderRadius: '8px',
-                      color: '#FFFFFF',
-                      fontSize: '13px',
-                      fontWeight: 500,
-                    }}
-                  >
-                    {projects[0].category}
-                  </span>
-                  <span
-                    className="flex items-center justify-center transition-all duration-300"
-                    style={{
-                      width: '44px',
-                      height: '44px',
-                      borderRadius: '12px',
-                      background: hoveredProject === 1 ? '#FFFFFF' : 'rgba(255,255,255,0.2)',
-                      backdropFilter: 'blur(8px)',
-                    }}
-                  >
-                    <ArrowUpRight
-                      size={20}
-                      style={{
-                        color: hoveredProject === 1 ? '#0A0A0A' : '#FFFFFF',
-                        transition: 'all 0.3s',
-                        transform: hoveredProject === 1 ? 'translate(2px, -2px)' : 'none',
-                      }}
-                    />
-                  </span>
-                </div>
-                <div>
-                  <h3
-                    style={{
-                      fontSize: '26px',
-                      fontWeight: 500,
-                      color: '#FFFFFF',
-                      marginBottom: '6px',
-                    }}
-                  >
-                    {projects[0].title}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: '15px',
-                      color: 'rgba(255,255,255,0.75)',
-                      maxWidth: '400px',
-                    }}
-                  >
-                    Modern online fashion store with seamless checkout
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-
-          {/* Small Projects */}
-          {projects.slice(1, 3).map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
@@ -233,7 +214,7 @@ const Portfolio = () => {
                 className="relative w-full block overflow-hidden group"
                 style={{
                   borderRadius: '16px',
-                  height: '248px',
+                  height: `${project.height}px`,
                   background: '#0A0A0A',
                 }}
               >
@@ -241,7 +222,7 @@ const Portfolio = () => {
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover transition-all duration-500"
+                  className="object-cover object-center transition-all duration-500"
                   style={{
                     opacity: hoveredProject === project.id ? 0.7 : 0.5,
                     transform: hoveredProject === project.id ? 'scale(1.03)' : 'scale(1)',
@@ -254,12 +235,12 @@ const Portfolio = () => {
                   <div className="flex justify-between items-start">
                     <span
                       style={{
-                        padding: '6px 14px',
+                        padding: '8px 16px',
                         background: 'rgba(255,255,255,0.2)',
                         backdropFilter: 'blur(8px)',
                         borderRadius: '8px',
                         color: '#FFFFFF',
-                        fontSize: '12px',
+                        fontSize: '13px',
                         fontWeight: 500,
                       }}
                     >
@@ -268,15 +249,15 @@ const Portfolio = () => {
                     <span
                       className="flex items-center justify-center transition-all duration-300"
                       style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '10px',
+                        width: '44px',
+                        height: '44px',
+                        borderRadius: '12px',
                         background: hoveredProject === project.id ? '#FFFFFF' : 'rgba(255,255,255,0.2)',
                         backdropFilter: 'blur(8px)',
                       }}
                     >
                       <ArrowUpRight
-                        size={18}
+                        size={20}
                         style={{
                           color: hoveredProject === project.id ? '#0A0A0A' : '#FFFFFF',
                           transition: 'all 0.3s',
@@ -287,91 +268,8 @@ const Portfolio = () => {
                   </div>
                   <h3
                     style={{
-                      fontSize: '18px',
-                      fontWeight: 600,
-                      color: '#FFFFFF',
-                    }}
-                  >
-                    {project.title}
-                  </h3>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-
-          {/* Medium Projects - Bottom Row */}
-          {projects.slice(3).map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 * (index + 3) }}
-              className="lg:col-span-1"
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
-            >
-              <Link
-                href={project.link}
-                className="relative w-full block overflow-hidden group"
-                style={{
-                  borderRadius: '16px',
-                  height: '280px',
-                  background: '#0A0A0A',
-                }}
-              >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-all duration-500"
-                  style={{
-                    opacity: hoveredProject === project.id ? 0.7 : 0.5,
-                    transform: hoveredProject === project.id ? 'scale(1.03)' : 'scale(1)',
-                  }}
-                />
-                <div
-                  className="absolute inset-0 flex flex-col justify-between"
-                  style={{ padding: '24px', zIndex: 2 }}
-                >
-                  <div className="flex justify-between items-start">
-                    <span
-                      style={{
-                        padding: '6px 14px',
-                        background: 'rgba(255,255,255,0.2)',
-                        backdropFilter: 'blur(8px)',
-                        borderRadius: '8px',
-                        color: '#FFFFFF',
-                        fontSize: '12px',
-                        fontWeight: 500,
-                      }}
-                    >
-                      {project.category}
-                    </span>
-                    <span
-                      className="flex items-center justify-center transition-all duration-300"
-                      style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '10px',
-                        background: hoveredProject === project.id ? '#FFFFFF' : 'rgba(255,255,255,0.2)',
-                        backdropFilter: 'blur(8px)',
-                      }}
-                    >
-                      <ArrowUpRight
-                        size={18}
-                        style={{
-                          color: hoveredProject === project.id ? '#0A0A0A' : '#FFFFFF',
-                          transition: 'all 0.3s',
-                          transform: hoveredProject === project.id ? 'translate(2px, -2px)' : 'none',
-                        }}
-                      />
-                    </span>
-                  </div>
-                  <h3
-                    style={{
-                      fontSize: '18px',
-                      fontWeight: 600,
+                      fontSize: '20px',
+                      fontWeight: 500,
                       color: '#FFFFFF',
                     }}
                   >
@@ -388,21 +286,24 @@ const Portfolio = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="lg:col-span-1"
+            style={{
+              breakInside: 'avoid',
+              marginBottom: '20px',
+            }}
           >
             <Link
               href="/contact"
-              className="relative w-full h-full flex flex-col justify-center items-center text-center group"
+              className="relative w-full flex flex-col justify-center items-center text-center group"
               style={{
                 borderRadius: '16px',
-                minHeight: '280px',
+                height: '320px',
                 background: 'linear-gradient(135deg, #673DE6 0%, #4F28B3 100%)',
                 padding: '32px',
               }}
             >
               <h3
                 style={{
-                  fontSize: '22px',
+                  fontSize: '24px',
                   fontWeight: 500,
                   color: '#FFFFFF',
                   marginBottom: '10px',
@@ -422,16 +323,16 @@ const Portfolio = () => {
               <span
                 className="inline-flex items-center gap-2 transition-all duration-300 group-hover:gap-3"
                 style={{
-                  padding: '12px 24px',
+                  padding: '14px 28px',
                   background: '#FFC107',
                   borderRadius: '10px',
                   color: '#0A0A0A',
-                  fontSize: '14px',
+                  fontSize: '15px',
                   fontWeight: 600,
                 }}
               >
                 Start a Project
-                <ArrowRight size={16} />
+                <ArrowRight size={18} />
               </span>
             </Link>
           </motion.div>

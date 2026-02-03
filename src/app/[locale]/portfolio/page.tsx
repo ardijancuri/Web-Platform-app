@@ -22,75 +22,91 @@ export default function PortfolioPage() {
   const projects = [
     {
       id: 1,
-      title: 'Fashion E-Commerce Store',
-      category: 'ecommerce',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
-      description: 'Modern online fashion store with seamless checkout experience',
+      title: 'Cioccolatitaliani',
+      category: 'websites',
+      image: '/work/cioccolatitaliani.avif',
+      description: 'Premium Italian chocolate brand website',
       size: 'large',
     },
     {
       id: 2,
-      title: 'Tech Startup Website',
+      title: 'Tiamo',
       category: 'websites',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-      description: 'Clean and modern landing page for a SaaS company',
+      image: '/work/tiamo.avif',
+      description: 'Elegant lifestyle brand web presence',
       size: 'small',
     },
     {
       id: 3,
-      title: 'Restaurant Booking System',
-      category: 'webapps',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop',
-      description: 'Full-featured reservation management system',
+      title: 'Premium Park',
+      category: 'websites',
+      image: '/work/premium-park.avif',
+      description: 'Luxury real estate and parking solutions',
       size: 'small',
     },
     {
       id: 4,
-      title: 'Real Estate Platform',
-      category: 'websites',
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
-      description: 'Property listing and search platform with virtual tours',
+      title: 'MonFrere',
+      category: 'ecommerce',
+      image: '/work/monfrere.avif',
+      description: 'Fashion e-commerce store with modern design',
       size: 'medium',
     },
     {
       id: 5,
-      title: 'Electronics Online Shop',
-      category: 'ecommerce',
-      image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&h=600&fit=crop',
-      description: 'Full-featured electronics e-commerce with comparison tools',
+      title: 'Marah',
+      category: 'websites',
+      image: '/work/marah.avif',
+      description: 'Clean and professional business website',
       size: 'medium',
     },
     {
       id: 6,
-      title: 'Project Management Tool',
-      category: 'webapps',
-      image: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&h=600&fit=crop',
-      description: 'Team collaboration and task management application',
+      title: 'Best Mobile',
+      category: 'ecommerce',
+      image: '/work/best-mobile.avif',
+      description: 'Mobile devices e-commerce platform',
       size: 'large',
     },
     {
       id: 7,
-      title: 'Healthcare Portal',
-      category: 'webapps',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop',
-      description: 'Patient management and appointment scheduling system',
+      title: 'Burdemplastik',
+      category: 'websites',
+      image: '/work/burdemplastik.avif',
+      description: 'Industrial manufacturing company website',
       size: 'small',
     },
     {
       id: 8,
-      title: 'Travel Agency Website',
+      title: 'Lesnamax',
       category: 'websites',
-      image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&h=600&fit=crop',
-      description: 'Beautiful travel booking website with package deals',
+      image: '/work/lesnamax.avif',
+      description: 'Corporate business web presence',
       size: 'small',
     },
     {
       id: 9,
-      title: 'Fitness Equipment Store',
-      category: 'ecommerce',
-      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop',
-      description: 'E-commerce store for gym and fitness equipment',
+      title: 'Pevalit',
+      category: 'websites',
+      image: '/work/pevalit.avif',
+      description: 'Professional services company website',
       size: 'medium',
+    },
+    {
+      id: 10,
+      title: 'Tesorouno',
+      category: 'ecommerce',
+      image: '/work/tesorouno.avif',
+      description: 'Luxury goods online store',
+      size: 'small',
+    },
+    {
+      id: 11,
+      title: 'Tonus',
+      category: 'websites',
+      image: '/work/tonus.avif',
+      description: 'Health and wellness brand website',
+      size: 'small',
     },
   ];
 
@@ -102,14 +118,14 @@ export default function PortfolioPage() {
   // Get grid class based on size
   const getGridClass = (size: string, index: number) => {
     if (size === 'large') return 'md:col-span-2 md:row-span-2';
-    if (size === 'medium') return 'md:col-span-2';
+    if (size === 'medium') return 'md:col-span-1';
     return '';
   };
 
   const getHeight = (size: string) => {
-    if (size === 'large') return '500px';
-    if (size === 'medium') return '300px';
-    return '280px';
+    if (size === 'large') return '600px';
+    if (size === 'medium') return '450px';
+    return '400px';
   };
 
   return (
@@ -201,7 +217,7 @@ export default function PortfolioPage() {
         <div className="container">
           <motion.div
             layout
-            className="grid grid-cols-1 md:grid-cols-4"
+            className="grid grid-cols-1 md:grid-cols-3"
             style={{ gap: '16px' }}
           >
             <AnimatePresence mode="popLayout">
@@ -230,7 +246,7 @@ export default function PortfolioPage() {
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover transition-all duration-700"
+                      className="object-cover object-top transition-all duration-700"
                       style={{
                         opacity: hoveredProject === project.id ? 0.6 : 0.85,
                         transform: hoveredProject === project.id ? 'scale(1.05)' : 'scale(1)',
