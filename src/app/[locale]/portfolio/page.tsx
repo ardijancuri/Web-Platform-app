@@ -22,91 +22,80 @@ export default function PortfolioPage() {
   const projects = [
     {
       id: 1,
-      title: 'Cioccolatitaliani',
+      title: 'Lesnamax',
       category: 'websites',
-      image: '/work/cioccolatitaliani.avif',
-      description: 'Premium Italian chocolate brand website',
-      size: 'large',
+      image: '/work/lesnamax.avif',
+      height: 580,
     },
     {
       id: 2,
       title: 'Tiamo',
       category: 'websites',
       image: '/work/tiamo.avif',
-      description: 'Elegant lifestyle brand web presence',
-      size: 'small',
+      height: 320,
     },
     {
       id: 3,
       title: 'Premium Park',
       category: 'websites',
       image: '/work/premium-park.avif',
-      description: 'Luxury real estate and parking solutions',
-      size: 'small',
+      height: 520,
     },
     {
       id: 4,
       title: 'MonFrere',
       category: 'ecommerce',
       image: '/work/monfrere.avif',
-      description: 'Fashion e-commerce store with modern design',
-      size: 'medium',
+      height: 340,
     },
     {
       id: 5,
-      title: 'Marah',
+      title: 'Cioccolatitaliani',
       category: 'websites',
-      image: '/work/marah.avif',
-      description: 'Clean and professional business website',
-      size: 'medium',
+      image: '/work/cioccolatitaliani.avif',
+      height: 600,
     },
     {
       id: 6,
-      title: 'Best Mobile',
-      category: 'ecommerce',
-      image: '/work/best-mobile.avif',
-      description: 'Mobile devices e-commerce platform',
-      size: 'large',
+      title: 'Marah',
+      category: 'websites',
+      image: '/work/marah.avif',
+      height: 360,
     },
     {
       id: 7,
-      title: 'Burdemplastik',
-      category: 'websites',
-      image: '/work/burdemplastik.avif',
-      description: 'Industrial manufacturing company website',
-      size: 'small',
+      title: 'Best Mobile',
+      category: 'ecommerce',
+      image: '/work/best-mobile.avif',
+      height: 550,
     },
     {
       id: 8,
-      title: 'Lesnamax',
-      category: 'websites',
-      image: '/work/lesnamax.avif',
-      description: 'Corporate business web presence',
-      size: 'small',
-    },
-    {
-      id: 9,
-      title: 'Pevalit',
-      category: 'websites',
-      image: '/work/pevalit.avif',
-      description: 'Professional services company website',
-      size: 'medium',
-    },
-    {
-      id: 10,
-      title: 'Tesorouno',
-      category: 'ecommerce',
-      image: '/work/tesorouno.avif',
-      description: 'Luxury goods online store',
-      size: 'small',
-    },
-    {
-      id: 11,
       title: 'Tonus',
       category: 'websites',
       image: '/work/tonus.avif',
-      description: 'Health and wellness brand website',
-      size: 'small',
+      height: 320,
+    },
+    {
+      id: 9,
+      title: 'Burdemplastik',
+      category: 'websites',
+      image: '/work/burdemplastik.avif',
+      height: 480,
+    },
+    {
+      id: 10,
+      title: 'Pevalit',
+      category: 'websites',
+      image: '/work/pevalit.avif',
+      height: 300,
+    },
+    {
+      id: 11,
+      title: 'Tesorouno',
+      category: 'ecommerce',
+      image: '/work/tesorouno.avif',
+      height: 540,
     },
   ];
 
@@ -114,19 +103,6 @@ export default function PortfolioPage() {
     activeCategory === 'all'
       ? projects
       : projects.filter((p) => p.category === activeCategory);
-
-  // Get grid class based on size
-  const getGridClass = (size: string, index: number) => {
-    if (size === 'large') return 'md:col-span-2 md:row-span-2';
-    if (size === 'medium') return 'md:col-span-1';
-    return '';
-  };
-
-  const getHeight = (size: string) => {
-    if (size === 'large') return '600px';
-    if (size === 'medium') return '450px';
-    return '400px';
-  };
 
   return (
     <>
@@ -212,33 +188,51 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Bento Grid Portfolio */}
+      {/* Pinterest-style Masonry Layout */}
       <section style={{ background: '#FFFFFF', paddingBottom: '100px' }}>
         <div className="container">
-          <motion.div
-            layout
-            className="grid grid-cols-1 md:grid-cols-3"
-            style={{ gap: '16px' }}
+          <style jsx>{`
+            @media (max-width: 1024px) {
+              .masonry-grid {
+                column-count: 2 !important;
+              }
+            }
+            @media (max-width: 640px) {
+              .masonry-grid {
+                column-count: 1 !important;
+              }
+            }
+          `}</style>
+
+          <div
+            className="masonry-grid"
+            style={{
+              columnCount: 3,
+              columnGap: '20px',
+            }}
           >
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className={getGridClass(project.size, index)}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  style={{
+                    breakInside: 'avoid',
+                    marginBottom: '20px',
+                  }}
                   onMouseEnter={() => setHoveredProject(project.id)}
                   onMouseLeave={() => setHoveredProject(null)}
                 >
                   <Link
                     href="/contact"
-                    className="relative block w-full h-full overflow-hidden group"
+                    className="relative w-full block overflow-hidden group"
                     style={{
-                      borderRadius: '20px',
-                      minHeight: getHeight(project.size),
+                      borderRadius: '16px',
+                      height: `${project.height}px`,
                       background: '#0A0A0A',
                     }}
                   >
@@ -246,38 +240,26 @@ export default function PortfolioPage() {
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover object-top transition-all duration-700"
+                      className="object-cover object-center transition-all duration-500"
                       style={{
-                        opacity: hoveredProject === project.id ? 0.6 : 0.85,
-                        transform: hoveredProject === project.id ? 'scale(1.05)' : 'scale(1)',
+                        opacity: hoveredProject === project.id ? 0.7 : 0.5,
+                        transform: hoveredProject === project.id ? 'scale(1.03)' : 'scale(1)',
                       }}
                     />
-
-                    {/* Gradient Overlay */}
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)',
-                      }}
-                    />
-
-                    {/* Content */}
                     <div
                       className="absolute inset-0 flex flex-col justify-between"
                       style={{ padding: '24px', zIndex: 2 }}
                     >
-                      {/* Top Row */}
                       <div className="flex justify-between items-start">
                         <span
                           style={{
                             padding: '8px 16px',
-                            background: 'rgba(255,255,255,0.15)',
-                            backdropFilter: 'blur(10px)',
-                            borderRadius: '100px',
+                            background: 'rgba(255,255,255,0.2)',
+                            backdropFilter: 'blur(8px)',
+                            borderRadius: '8px',
                             color: '#FFFFFF',
-                            fontSize: '12px',
+                            fontSize: '13px',
                             fontWeight: 500,
-                            letterSpacing: '0.02em',
                           }}
                         >
                           {categories.find((c) => c.id === project.category)?.label}
@@ -287,9 +269,9 @@ export default function PortfolioPage() {
                           style={{
                             width: '44px',
                             height: '44px',
-                            borderRadius: '50%',
-                            background: hoveredProject === project.id ? '#FFFFFF' : 'rgba(255,255,255,0.15)',
-                            backdropFilter: 'blur(10px)',
+                            borderRadius: '12px',
+                            background: hoveredProject === project.id ? '#FFFFFF' : 'rgba(255,255,255,0.2)',
+                            backdropFilter: 'blur(8px)',
                           }}
                         >
                           <ArrowUpRight
@@ -302,40 +284,21 @@ export default function PortfolioPage() {
                           />
                         </span>
                       </div>
-
-                      {/* Bottom Content */}
-                      <div>
-                        <h3
-                          className="transition-transform duration-300"
-                          style={{
-                            fontSize: project.size === 'large' ? '28px' : '20px',
-                            fontWeight: 500,
-                            color: '#FFFFFF',
-                            marginBottom: '8px',
-                            transform: hoveredProject === project.id ? 'translateY(-4px)' : 'none',
-                          }}
-                        >
-                          {project.title}
-                        </h3>
-                        <p
-                          className="transition-all duration-300"
-                          style={{
-                            fontSize: '14px',
-                            color: 'rgba(255,255,255,0.7)',
-                            maxWidth: project.size === 'large' ? '400px' : '300px',
-                            opacity: hoveredProject === project.id ? 1 : 0.8,
-                            transform: hoveredProject === project.id ? 'translateY(-4px)' : 'none',
-                          }}
-                        >
-                          {project.description}
-                        </p>
-                      </div>
+                      <h3
+                        style={{
+                          fontSize: '20px',
+                          fontWeight: 500,
+                          color: '#FFFFFF',
+                        }}
+                      >
+                        {project.title}
+                      </h3>
                     </div>
                   </Link>
                 </motion.div>
               ))}
             </AnimatePresence>
-          </motion.div>
+          </div>
         </div>
       </section>
 
