@@ -68,42 +68,54 @@
       "starter": {
         "name": "Fillestare",
         "description": "Perfekte për bizneset e vogla që sapo fillojnë",
-        "price": "€299",
-        "period": "njëherësh",
+        "price": "€270",
+        "period": "vit",
         "features": [
           "Faqe njëfaqëshe",
           "Responsive për celular",
           "Formë kontakti",
           "SEO bazike",
-          "1 muaj mbështetje"
+          "1 muaj mbështetje",
+          "Trajnim dhe mbështetje teknike",
+          "Hosting dhe domen të përfshira",
+          "Ndryshime përmbajtjeje: 2 vjetore",
+          "Ndryshime dizajni: 2 vjetore"
         ]
       },
       "business": {
         "name": "Biznes",
         "description": "Ideale për bizneset në rritje që kanë nevojë për më shumë",
-        "price": "€599",
-        "period": "njëherësh",
+        "price": "€555",
+        "period": "vit",
         "features": [
           "Deri në 5 faqe",
           "Responsive për celular",
           "Formë kontakti & harta",
           "SEO e avancuar",
           "Integrim me rrjete sociale",
-          "3 muaj mbështetje"
+          "3 muaj mbështetje",
+          "Trajnim dhe mbështetje teknike",
+          "Hosting dhe domen të përfshira",
+          "Ndryshime përmbajtjeje: 5 vjetore",
+          "Ndryshime dizajni: 5 vjetore"
         ]
       },
       "ecommerce": {
-        "name": "E-Commerce",
+        "name": "E-Commerce / E-Katalog",
         "description": "Zgjidhje e plotë për shitje online",
-        "price": "€999",
-        "period": "njëherësh",
+        "price": "€670",
+        "period": "vit",
         "features": [
           "Dyqan online i plotë",
           "Integrim pagesash",
           "Menaxhim produktesh",
           "Gjurmim porosish",
           "Sistem inventari",
-          "6 muaj mbështetje"
+          "6 muaj mbështetje",
+          "Trajnim dhe mbështetje teknike",
+          "Hosting dhe domen të përfshira",
+          "Ndryshime përmbajtjeje: 5 vjetore",
+          "Ndryshime dizajni: 5 vjetore"
         ]
       },
       "enterprise": {
@@ -117,7 +129,11 @@
           "Përgjigje prioritare",
           "Integrime të personalizuara",
           "Garanci SLA",
-          "Mirëmbajtje e vazhdueshme"
+          "Mirëmbajtje e vazhdueshme",
+          "Trajnim dhe mbështetje teknike",
+          "Hosting dhe domen të përfshira",
+          "Ndryshime përmbajtjeje: 5 vjetore",
+          "Ndryshime dizajni: 5 vjetore"
         ]
       }
     }

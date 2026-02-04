@@ -68,42 +68,54 @@
       "starter": {
         "name": "Starter",
         "description": "Perfect for small businesses just getting started",
-        "price": "€299",
-        "period": "one-time",
+        "price": "€270",
+        "period": "year",
         "features": [
           "Single page website",
           "Mobile responsive",
           "Contact form",
           "Basic SEO",
-          "1 month support"
+          "1 month support",
+          "Training and technical support",
+          "Hosting and domain included",
+          "Content changes: 2 annually",
+          "Design changes: 2 annually"
         ]
       },
       "business": {
         "name": "Business",
         "description": "Ideal for growing businesses that need more",
-        "price": "€599",
-        "period": "one-time",
+        "price": "€555",
+        "period": "year",
         "features": [
           "Up to 5 pages",
           "Mobile responsive",
           "Contact form & maps",
           "Advanced SEO",
           "Social media integration",
-          "3 months support"
+          "3 months support",
+          "Training and technical support",
+          "Hosting and domain included",
+          "Content changes: 5 annually",
+          "Design changes: 5 annually"
         ]
       },
       "ecommerce": {
-        "name": "E-Commerce",
+        "name": "E-Commerce / E-Catalogue",
         "description": "Complete solution for online selling",
-        "price": "€999",
-        "period": "one-time",
+        "price": "€670",
+        "period": "year",
         "features": [
           "Full online store",
           "Payment integration",
           "Product management",
           "Order tracking",
           "Inventory system",
-          "6 months support"
+          "6 months support",
+          "Training and technical support",
+          "Hosting and domain included",
+          "Content changes: 5 annually",
+          "Design changes: 5 annually"
         ]
       },
       "enterprise": {
@@ -117,7 +129,11 @@
           "Priority response",
           "Custom integrations",
           "SLA guarantee",
-          "Ongoing maintenance"
+          "Ongoing maintenance",
+          "Training and technical support",
+          "Hosting and domain included",
+          "Content changes: 5 annually",
+          "Design changes: 5 annually"
         ]
       }
     }

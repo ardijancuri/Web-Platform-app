@@ -17,11 +17,11 @@ export default function PricingPage() {
     },
     {
       key: 'business',
-      popular: true,
+      popular: false,
     },
     {
       key: 'ecommerce',
-      popular: false,
+      popular: true,
     },
     {
       key: 'enterprise',
