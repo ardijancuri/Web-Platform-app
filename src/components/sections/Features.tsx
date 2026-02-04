@@ -64,7 +64,7 @@ const Features = () => {
             <h2
               style={{
                 fontSize: 'clamp(28px, 4vw, 40px)',
-                fontWeight: 400,
+                fontWeight: 500,
                 color: '#0A0A0A',
                 lineHeight: 1.15,
                 marginBottom: '16px',

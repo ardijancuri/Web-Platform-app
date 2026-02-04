@@ -138,7 +138,7 @@ export default function PortfolioPage() {
             <h1
               style={{
                 fontSize: 'clamp(36px, 5vw, 56px)',
-                fontWeight: 400,
+                fontWeight: 500,
                 color: '#0A0A0A',
                 lineHeight: 1.15,
                 marginBottom: '20px',
@@ -345,7 +345,7 @@ export default function PortfolioPage() {
               <h2
                 style={{
                   fontSize: 'clamp(28px, 4vw, 40px)',
-                  fontWeight: 400,
+                  fontWeight: 500,
                   color: '#FFFFFF',
                   lineHeight: 1.2,
                   marginBottom: '16px',

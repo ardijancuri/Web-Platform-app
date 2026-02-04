@@ -73,7 +73,7 @@ export default function AboutPage() {
             <h1
               style={{
                 fontSize: 'clamp(36px, 5vw, 56px)',
-                fontWeight: 400,
+                fontWeight: 500,
                 color: '#0A0A0A',
                 lineHeight: 1.15,
                 marginBottom: '20px',
@@ -120,7 +120,7 @@ export default function AboutPage() {
               <h2
                 style={{
                   fontSize: 'clamp(28px, 4vw, 40px)',
-                  fontWeight: 400,
+                  fontWeight: 500,
                   color: '#0A0A0A',
                   lineHeight: 1.2,
                   marginBottom: '20px',
@@ -141,10 +141,10 @@ export default function AboutPage() {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {[
-                  'Over 500 websites created',
-                  '300+ satisfied clients',
-                  'Expert team of 15+ professionals',
-                  'Serving clients across 10+ countries',
+                  'Over 50 websites created',
+                  '50+ satisfied clients',
+                  'Expert team of 5+ professionals',
+                  'Serving clients across 5+ countries',
                 ].map((item, index) => (
                   <div key={index} className="flex items-center" style={{ gap: '12px' }}>
                     <CheckCircle size={20} style={{ color: '#22C55E' }} />
@@ -258,7 +258,7 @@ export default function AboutPage() {
               <h2
                 style={{
                   fontSize: 'clamp(28px, 4vw, 40px)',
-                  fontWeight: 400,
+                  fontWeight: 500,
                   color: '#0A0A0A',
                   lineHeight: 1.2,
                   marginBottom: '20px',
@@ -341,7 +341,7 @@ export default function AboutPage() {
               <h2
                 style={{
                   fontSize: 'clamp(28px, 4vw, 40px)',
-                  fontWeight: 400,
+                  fontWeight: 500,
                   color: '#FFFFFF',
                   lineHeight: 1.2,
                   marginBottom: '16px',

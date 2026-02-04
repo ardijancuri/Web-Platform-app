@@ -149,7 +149,7 @@ const Services = () => {
               <h2
                 style={{
                   fontSize: 'clamp(32px, 5vw, 44px)',
-                  fontWeight: 400,
+                  fontWeight: 500,
                   color: '#0A0A0A',
                   lineHeight: 1.2,
                 }}
