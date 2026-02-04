@@ -52,7 +52,6 @@ const Header = () => {
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
-      setMobileLanguageOpen(false); // Close language dropdown when menu opens
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -60,6 +59,15 @@ const Header = () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileMenuOpen]);
+
+  // Close language dropdown when mobile menu opens
+  const handleMobileMenuToggle = () => {
+    const newState = !isMobileMenuOpen;
+    if (newState) {
+      setMobileLanguageOpen(false);
+    }
+    setIsMobileMenuOpen(newState);
+  };
 
   // Close mobile language dropdown when clicking outside
   useEffect(() => {
@@ -214,7 +222,7 @@ const Header = () => {
         style={{ height: '64px', padding: '0 16px' }}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
+        <Link href="/" className="flex items-center gap-2 shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
             <div
               className="flex items-center justify-center rounded-lg"
               style={{
@@ -317,7 +325,7 @@ const Header = () => {
 
           {/* Hamburger Menu Button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={handleMobileMenuToggle}
             className="flex items-center justify-center rounded-lg transition-colors active:bg-gray-100"
             style={{
               color: '#2D1F66',

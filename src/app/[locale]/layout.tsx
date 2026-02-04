@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import { locales, type Locale } from '@/i18n/config';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import ScrollToTop from '@/components/layout/ScrollToTop';
 import '../globals.css';
 
 const inter = Inter({
@@ -55,6 +56,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
+          <ScrollToTop />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

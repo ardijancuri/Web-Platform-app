@@ -211,7 +211,7 @@ export default function PortfolioPage() {
               columnGap: '20px',
             }}
           >
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}

@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState, useEffect } from 'react';
+import { Suspense, useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -28,22 +28,23 @@ function ContactPageContent() {
   const pricingT = useTranslations('pricing');
   const searchParams = useSearchParams();
 
+  // Get plan from URL parameter (computed once)
+  const initialPlan = useMemo(() => {
+    const planParam = searchParams.get('plan');
+    if (planParam && ['starter', 'business', 'ecommerce', 'enterprise'].includes(planParam)) {
+      return planParam;
+    }
+    return '';
+  }, [searchParams]);
+
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     phone: '',
     company: '',
-    plan: '',
+    plan: initialPlan,
     message: '',
   });
-
-  // Autofill plan from URL parameter
-  useEffect(() => {
-    const planParam = searchParams.get('plan');
-    if (planParam && ['starter', 'business', 'ecommerce', 'enterprise'].includes(planParam)) {
-      setFormState((prev) => ({ ...prev, plan: planParam }));
-    }
-  }, [searchParams]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');

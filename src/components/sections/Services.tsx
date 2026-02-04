@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/routing';
+import { Link, usePathname } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import Image from 'next/image';
@@ -13,6 +13,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
+
+// Use useLayoutEffect on client, useEffect on server
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 // Service images defined outside component to prevent recreation
 const SERVICE_IMAGES = [
@@ -26,9 +29,11 @@ const SERVICES_COUNT = 4;
 
 const Services = () => {
   const t = useTranslations('services');
+  const pathname = usePathname();
   const [expandedIndex, setExpandedIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
 
   const services = useMemo(
@@ -73,32 +78,46 @@ const Services = () => {
     return () => window.removeEventListener('resize', checkDesktop);
   }, []);
 
+  // Clean up ScrollTrigger on pathname change (navigation)
   useEffect(() => {
+    return () => {
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+        scrollTriggerRef.current = null;
+      }
+      // Kill all ScrollTriggers to be safe
+      ScrollTrigger.getAll().forEach(st => st.kill());
+      ScrollTrigger.refresh();
+    };
+  }, [pathname]);
+
+  useIsomorphicLayoutEffect(() => {
     if (!isDesktop || !sectionRef.current || !containerRef.current) return;
 
     const section = sectionRef.current;
 
-    // Create ScrollTrigger for pinning and progress tracking
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: 'top top',
-      end: `+=${SERVICES_COUNT * 70}%`,
-      pin: true,
-      pinSpacing: true,
-      scrub: 0.5,
-      onUpdate: (self) => {
-        // Calculate which service should be active based on scroll progress
-        const progress = self.progress;
-        const newIndex = Math.min(
-          Math.floor(progress * SERVICES_COUNT),
-          SERVICES_COUNT - 1
-        );
-        setExpandedIndex(newIndex);
-      },
-    });
+    // Small delay to ensure DOM is ready
+    const ctx = gsap.context(() => {
+      scrollTriggerRef.current = ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: `+=${SERVICES_COUNT * 70}%`,
+        pin: true,
+        pinSpacing: true,
+        scrub: 0.5,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          const newIndex = Math.min(
+            Math.floor(progress * SERVICES_COUNT),
+            SERVICES_COUNT - 1
+          );
+          setExpandedIndex(newIndex);
+        },
+      });
+    }, sectionRef);
 
     return () => {
-      scrollTrigger.kill();
+      ctx.revert(); // This cleans up all GSAP animations and ScrollTriggers in context
     };
   }, [isDesktop]);
 
