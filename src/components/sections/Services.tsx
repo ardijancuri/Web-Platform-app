@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -14,6 +14,16 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// Service images defined outside component to prevent recreation
+const SERVICE_IMAGES = [
+  '/web-design.jpg',
+  '/e-commerce.webp',
+  '/web-app.jpg',
+  '/hosting.jpg',
+] as const;
+
+const SERVICES_COUNT = 4;
+
 const Services = () => {
   const t = useTranslations('services');
   const [expandedIndex, setExpandedIndex] = useState(0);
@@ -21,32 +31,35 @@ const Services = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
 
-  const services = [
-    {
-      id: 'web-design',
-      title: t('webDesign.title'),
-      description: t('webDesign.description'),
-      image: '/web-design.jpg',
-    },
-    {
-      id: 'ecommerce',
-      title: t('ecommerce.title'),
-      description: t('ecommerce.description'),
-      image: '/e-commerce.webp',
-    },
-    {
-      id: 'web-apps',
-      title: t('webApps.title'),
-      description: t('webApps.description'),
-      image: '/web-app.jpg',
-    },
-    {
-      id: 'hosting',
-      title: t('hosting.title'),
-      description: t('hosting.description'),
-      image: '/hosting.jpg',
-    },
-  ];
+  const services = useMemo(
+    () => [
+      {
+        id: 'web-design',
+        title: t('webDesign.title'),
+        description: t('webDesign.description'),
+        image: SERVICE_IMAGES[0],
+      },
+      {
+        id: 'ecommerce',
+        title: t('ecommerce.title'),
+        description: t('ecommerce.description'),
+        image: SERVICE_IMAGES[1],
+      },
+      {
+        id: 'web-apps',
+        title: t('webApps.title'),
+        description: t('webApps.description'),
+        image: SERVICE_IMAGES[2],
+      },
+      {
+        id: 'hosting',
+        title: t('hosting.title'),
+        description: t('hosting.description'),
+        image: SERVICE_IMAGES[3],
+      },
+    ],
+    [t]
+  );
 
   useEffect(() => {
     // Check if desktop
@@ -64,13 +77,12 @@ const Services = () => {
     if (!isDesktop || !sectionRef.current || !containerRef.current) return;
 
     const section = sectionRef.current;
-    const servicesCount = services.length;
 
     // Create ScrollTrigger for pinning and progress tracking
     const scrollTrigger = ScrollTrigger.create({
       trigger: section,
       start: 'top top',
-      end: `+=${servicesCount * 70}%`,
+      end: `+=${SERVICES_COUNT * 70}%`,
       pin: true,
       pinSpacing: true,
       scrub: 0.5,
@@ -78,8 +90,8 @@ const Services = () => {
         // Calculate which service should be active based on scroll progress
         const progress = self.progress;
         const newIndex = Math.min(
-          Math.floor(progress * servicesCount),
-          servicesCount - 1
+          Math.floor(progress * SERVICES_COUNT),
+          SERVICES_COUNT - 1
         );
         setExpandedIndex(newIndex);
       },
@@ -88,7 +100,7 @@ const Services = () => {
     return () => {
       scrollTrigger.kill();
     };
-  }, [isDesktop, services.length]);
+  }, [isDesktop]);
 
   return (
     <section
@@ -139,6 +151,7 @@ const Services = () => {
                 }}
               >
                 <button
+                  type="button"
                   onClick={() => setExpandedIndex(index)}
                   className="w-full flex items-center justify-between text-left"
                   style={{
@@ -217,6 +230,21 @@ const Services = () => {
 
           {/* Right - Image */}
           <div className="hidden lg:flex items-center justify-center h-full">
+            {/* Preload all images */}
+            <div className="sr-only absolute" aria-hidden="true">
+              {SERVICE_IMAGES.map((src, index) => (
+                <div key={src} className="relative w-1 h-1">
+                  <Image
+                    src={src}
+                    alt=""
+                    fill
+                    sizes="50vw"
+                    priority={index < 2}
+                  />
+                </div>
+              ))}
+            </div>
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={expandedIndex}
@@ -234,7 +262,9 @@ const Services = () => {
                   src={services[expandedIndex].image}
                   alt={services[expandedIndex].title}
                   fill
+                  sizes="50vw"
                   className="object-cover"
+                  priority
                 />
               </motion.div>
             </AnimatePresence>
