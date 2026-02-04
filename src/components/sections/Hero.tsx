@@ -43,6 +43,7 @@ const Hero = () => {
                 color: '#171717',
                 marginBottom: '20px',
                 maxWidth: '520px',
+                fontWeight: 500,
               }}
             >
               {t('title')}{' '}
