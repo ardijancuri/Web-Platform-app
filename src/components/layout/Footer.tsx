@@ -96,19 +96,19 @@ const Footer = () => {
                 <span>contact@oniweb.com</span>
               </a>
               <a
-                href="tel:+38970123456"
+                href="tel:+38975222542"
                 className="flex items-center transition-colors"
                 style={{ gap: '12px', color: '#A3A2A1', fontSize: '14px' }}
               >
                 <Phone size={18} style={{ color: '#673DE6' }} />
-                <span>+389 70 123 456</span>
+                <span>+389 75 222 542</span>
               </a>
               <div
                 className="flex items-center"
                 style={{ gap: '12px', color: '#A3A2A1', fontSize: '14px' }}
               >
                 <MapPin size={18} style={{ color: '#673DE6' }} />
-                <span>Skopje, North Macedonia</span>
+                <span>East Gate Living, A2-1, Skopje</span>
               </div>
             </div>
           </div>
@@ -233,7 +233,15 @@ const Footer = () => {
         <div className="container" style={{ paddingTop: '24px', paddingBottom: '24px' }}>
           <div className="flex flex-col md:flex-row items-center justify-between" style={{ gap: '16px' }}>
             <p style={{ color: '#737271', fontSize: '14px' }}>
-              {t('copyright')}
+              © 2026 oniweb. Powered by{' '}
+              <a
+                href="https://oninova.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'underline', color: '#FFC107' }}
+              >
+                Oninova
+              </a>
             </p>
             <div className="flex items-center" style={{ gap: '24px' }}>
               {legal.map((item) => (
