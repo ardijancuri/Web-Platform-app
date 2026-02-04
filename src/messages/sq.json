@@ -206,6 +206,7 @@
     "privacy": "Politika e Privatësisë",
     "terms": "Kushtet e Shërbimit",
     "cookies": "Politika e Cookies",
+    "manageCookies": "Menaxho Cookies",
     "newsletter": {
       "title": "Qëndroni të Informuar",
       "placeholder": "Vendosni emailin tuaj",
@@ -243,5 +244,24 @@
         "description": "Çdo faqe ndërtohet me optimizim për motorët e kërkimit për t'ju ndihmuar të renditet më lart."
       }
     }
+  },
+  "cookieConsent": {
+    "title": "Ne kujdesemi për privatësinë tuaj.",
+    "description": "Disa teknologji gjurmimi janë të rëndësishme për funksionimin e duhur të faqes tonë dhe janë gjithmonë aktive. Duke klikuar \"Prano\" ju gjithashtu na drejtoni të përdorim teknologji gjurmimi opsionale. Mund të mësoni më shumë rreth këtyre teknologjive duke klikuar \"Menaxho Preferencat e Cookies.\"",
+    "accept": "Prano",
+    "acceptBasic": "Prano Cookies Bazike",
+    "managePreferences": "Menaxho Preferencat e Cookies",
+    "preferencesTitle": "Menaxho Preferencat e Cookies",
+    "preferencesDescription": "Zgjidhni cilat cookies dëshironi të lejoni. Mund t'i ndryshoni këto cilësime në çdo kohë.",
+    "necessaryCookies": "Cookies të Nevojshme",
+    "necessaryDescription": "Këto cookies janë thelbësore për funksionimin e duhur të faqes dhe nuk mund të çaktivizohen.",
+    "alwaysActive": "Gjithmonë Aktive",
+    "analyticsCookies": "Cookies Analitike",
+    "analyticsDescription": "Na ndihmojnë të kuptojmë se si vizitorët ndërveprojnë me faqen tonë duke mbledhur informacion anonim.",
+    "marketingCookies": "Cookies Marketingu",
+    "marketingDescription": "Përdoren për të ofruar reklama të personalizuara dhe për të matur efektivitetin e fushatave publicitare.",
+    "optional": "Opsionale",
+    "savePreferences": "Ruaj Preferencat",
+    "back": "Kthehu"
   }
 }

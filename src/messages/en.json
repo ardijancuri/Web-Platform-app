@@ -206,6 +206,7 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "cookies": "Cookie Policy",
+    "manageCookies": "Manage Cookies",
     "newsletter": {
       "title": "Stay Updated",
       "placeholder": "Enter your email",
@@ -243,5 +244,24 @@
         "description": "Every website is built with search engine optimization in mind to help you rank higher."
       }
     }
+  },
+  "cookieConsent": {
+    "title": "We care about your privacy.",
+    "description": "Some tracking technologies are important for the correct functioning of our website and are always on. By clicking \"Accept\" you are also directing us to use optional tracking technologies. You can learn more about those technologies by clicking \"Manage Cookie Preferences.\"",
+    "accept": "Accept",
+    "acceptBasic": "Accept Basic Cookies",
+    "managePreferences": "Manage Cookie Preferences",
+    "preferencesTitle": "Manage Cookie Preferences",
+    "preferencesDescription": "Choose which cookies you want to allow. You can change these settings at any time.",
+    "necessaryCookies": "Necessary Cookies",
+    "necessaryDescription": "These cookies are essential for the website to function properly and cannot be disabled.",
+    "alwaysActive": "Always Active",
+    "analyticsCookies": "Analytics Cookies",
+    "analyticsDescription": "Help us understand how visitors interact with our website by collecting anonymous information.",
+    "marketingCookies": "Marketing Cookies",
+    "marketingDescription": "Used to deliver personalized ads and measure the effectiveness of advertising campaigns.",
+    "optional": "Optional",
+    "savePreferences": "Save Preferences",
+    "back": "Back"
   }
 }

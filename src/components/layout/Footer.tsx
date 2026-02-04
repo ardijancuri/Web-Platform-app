@@ -231,7 +231,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
         <div className="container" style={{ paddingTop: '24px', paddingBottom: '24px' }}>
-          <div className="flex flex-col md:flex-row items-center justify-between" style={{ gap: '16px' }}>
+          <div className="flex flex-col-reverse md:flex-row items-center justify-between" style={{ gap: '16px' }}>
             <p style={{ color: '#737271', fontSize: '14px' }}>
               © 2026 oniweb. Powered by{' '}
               <a
@@ -243,7 +243,7 @@ const Footer = () => {
                 Oninova
               </a>
             </p>
-            <div className="flex items-center" style={{ gap: '24px' }}>
+            <div className="flex items-center justify-center flex-wrap" style={{ gap: '16px' }}>
               {legal.map((item) => (
                 <Link
                   key={item.href}
@@ -254,6 +254,20 @@ const Footer = () => {
                   {item.label}
                 </Link>
               ))}
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent('openCookiePreferences'))}
+                className="transition-colors"
+                style={{
+                  color: '#737271',
+                  fontSize: '14px',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 0,
+                }}
+              >
+                {t('manageCookies')}
+              </button>
             </div>
           </div>
         </div>
