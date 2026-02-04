@@ -6,6 +6,7 @@ import { locales, type Locale } from '@/i18n/config';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
+import CookieConsent from '@/components/layout/CookieConsent';
 import '../globals.css';
 
 const inter = Inter({
@@ -60,6 +61,7 @@ export default async function LocaleLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <CookieConsent />
         </NextIntlClientProvider>
       </body>
     </html>
