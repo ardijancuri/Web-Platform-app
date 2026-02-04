@@ -34,6 +34,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="order-1 lg:order-1"
           >
             {/* Heading */}
             <h1
@@ -64,7 +65,7 @@ const Hero = () => {
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center" style={{ gap: '12px', marginBottom: '40px' }}>
+            <div className="flex flex-wrap items-center" style={{ gap: '12px', marginBottom: '10px' }}>
               <Link href="/contact" className="btn btn-lg btn-accent">
                 {t('cta')}
                 <ArrowRight size={18} />
@@ -78,9 +79,9 @@ const Hero = () => {
               </Link>
             </div>
 
-            {/* Trust Stats Row */}
+            {/* Trust Stats Row - Hidden on mobile, shown on desktop */}
             <div
-              className="flex items-center flex-wrap"
+              className="hidden lg:flex items-center flex-wrap"
               style={{ gap: '32px', paddingTop: '24px', borderTop: '1px solid #E5E5E5' }}
             >
               <div>
@@ -103,7 +104,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative w-full max-w-full"
+            className="relative w-full max-w-full order-2 lg:order-2"
           >
             <div
               className="relative rounded-2xl overflow-hidden w-full max-w-full"
@@ -120,6 +121,28 @@ const Hero = () => {
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
               />
+            </div>
+          </motion.div>
+
+          {/* Trust Stats Row - Mobile only, shown below image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex lg:hidden items-center flex-wrap order-3"
+            style={{ gap: '32px', paddingTop: '24px', borderTop: '1px solid #E5E5E5' }}
+          >
+            <div>
+              <div style={{ fontSize: '28px', fontWeight: 500, color: '#171717' }}>50+</div>
+              <div style={{ fontSize: '13px', color: '#737373' }}>{t('stats.websites')}</div>
+            </div>
+            <div>
+              <div style={{ fontSize: '28px', fontWeight: 500, color: '#171717' }}>50+</div>
+              <div style={{ fontSize: '13px', color: '#737373' }}>{t('stats.clients')}</div>
+            </div>
+            <div>
+              <div style={{ fontSize: '28px', fontWeight: 500, color: '#171717' }}>6+</div>
+              <div style={{ fontSize: '13px', color: '#737373' }}>{t('stats.experience')}</div>
             </div>
           </motion.div>
         </div>
