@@ -102,8 +102,8 @@ function ContactPageContent() {
     {
       icon: MapPin,
       title: t('info.address'),
-      value: 'Skopje, North Macedonia',
-      href: null,
+      value: 'Oninova, East Gate Living, Skopje',
+      href: 'https://maps.google.com/?q=Oninova+East+Gate+Living+Skopje',
     },
     {
       icon: Clock,
@@ -522,7 +522,7 @@ function ContactPageContent() {
             style={{ borderRadius: '16px', border: '1px solid #E5E5E5' }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47567.42028252057!2d21.393792!3d41.9981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1354151e7b2f33f9%3A0x5c8d6a3c14f2c9c4!2sSkopje%2C%20North%20Macedonia!5e0!3m2!1sen!2sus!4v1705512000000!5m2!1sen!2sus"
+              src="https://www.google.com/maps?q=Oninova+East+Gate+Living+Skopje&output=embed"
               width="100%"
               height="400"
               style={{ border: 0 }}
