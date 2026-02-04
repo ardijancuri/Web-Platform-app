@@ -211,15 +211,14 @@ export default function PortfolioPage() {
               columnGap: '20px',
             }}
           >
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence mode="wait">
               {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  layout
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  transition={{ duration: 0.4, delay: index * 0.03 }}
                   style={{
                     breakInside: 'avoid',
                     marginBottom: '20px',
